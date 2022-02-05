@@ -81,7 +81,7 @@ dumpMotorLeft = new WPI_TalonSRX(7);
 dumpMotorLeft.configFactoryDefault();
 
         /* Invert Motor? and set Break Mode */
-dumpMotorLeft.setInverted(false);
+dumpMotorLeft.setInverted(true);
 dumpMotorLeft.setNeutralMode(NeutralMode.Coast);
 
         /* Set the peak and nominal outputs */
