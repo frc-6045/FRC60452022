@@ -55,8 +55,8 @@ public class ArcadeDrive extends CommandBase {
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
-    public void execute() {
-        m_driveTrain.getDifferentialDrive().arcadeDrive(singleJoy.getY() *.4, singleJoy.getZ());
+    public void execute() {   
+        m_driveTrain.getDifferentialDrive().arcadeDrive(singleJoy.getY() *.4, singleJoy.getX());
     }
 
     // Called once the command ends or is interrupted.
