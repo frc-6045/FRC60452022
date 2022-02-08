@@ -121,7 +121,7 @@ backRightDriveMotor.configPeakOutputReverse(-1, 30);
         
 
 
-rightDriveMotorGroup = new MotorControllerGroup(frontRightDriveMotor, backRightDriveMotor  );
+rightDriveMotorGroup = new MotorControllerGroup(frontRightDriveMotor, backRightDriveMotor);
  addChild("RightDriveMotorGroup",rightDriveMotorGroup);
  
 

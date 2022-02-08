@@ -108,6 +108,12 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
+    if (Constants.DrivePrefrance == 0){
+        m_robotContainer.getTankDrive().schedule();
+    }else{
+        m_robotContainer.getArcadeDrive().schedule();
+    }
+    
     }
 
     @Override
