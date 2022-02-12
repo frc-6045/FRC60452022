@@ -61,7 +61,7 @@ public class TankDrive extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_driveTrain.getDifferentialDrive().tankDrive(leftJoystick.getY() * .4, rightJoystick.getY() * .4);
+        m_driveTrain.getDifferentialDrive().tankDrive(leftJoystick.getY() * -.75, rightJoystick.getY() * .75);
     }
 
   

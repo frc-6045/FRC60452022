@@ -56,6 +56,7 @@ public ArcadeDrive getArcadeDrive(){ return m_ArcadeDrive; }
 public TankDrive getTankDrive(){ return m_TankDrive;}
 // Gyro
 public static final ADIS16470_IMU gyro = new ADIS16470_IMU();
+// Gyro Varibales
 
 
   
@@ -103,19 +104,19 @@ public static final ADIS16470_IMU gyro = new ADIS16470_IMU();
   private void configureButtonBindings() {
         
 // Create some buttons
-final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, 0);        
+final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, 1);        
 arcadeTrigger.whenPressed(new Climb( m_lift ) ,true);
 
-final JoystickButton rightTrigger = new JoystickButton(rightTankJoystick, 0);        
+final JoystickButton rightTrigger = new JoystickButton(rightTankJoystick, 1);        
 rightTrigger.whenHeld(new Dump( m_dumper ) ,true);
 
-final JoystickButton leftTrigger = new JoystickButton(leftTankJoystick, 0);        
-leftTrigger.whenHeld(new IntakeSpin( m_intake ) ,true);
+final JoystickButton leftTrigger = new JoystickButton(leftTankJoystick, 1);        
+leftTrigger.whenHeld(new IntakeSpin( m_intake, leftTrigger ) ,true);
    
-final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, 1);
+final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, 2);
 arcadeLeftUpStick.whenHeld(new IntakeRise(m_intake) ,true);
 
-final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, 2);
+final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, 3);
 arcadeLeftDownStick.whenHeld(new IntakeRise(m_intake) ,true);
 
 
