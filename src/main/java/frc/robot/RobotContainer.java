@@ -51,9 +51,11 @@ private final Joystick leftTankJoystick = new Joystick(0);
 // Commands
 private final ArcadeDrive m_ArcadeDrive = new ArcadeDrive(m_driveTrain, arcadeJoystick);
 private final TankDrive m_TankDrive = new TankDrive(m_driveTrain, leftTankJoystick, rightTankJoystick);
+private final IntakeSpin m_IntakeSpin = new IntakeSpin(m_intake);
 // Command Getters
 public ArcadeDrive getArcadeDrive(){ return m_ArcadeDrive; }
 public TankDrive getTankDrive(){ return m_TankDrive;}
+public IntakeSpin getIntakeSpin(){ return m_IntakeSpin;}
 // Gyro
 public static final ADIS16470_IMU gyro = new ADIS16470_IMU();
 // Gyro Varibales
@@ -111,7 +113,7 @@ final JoystickButton rightTrigger = new JoystickButton(rightTankJoystick, 1);
 rightTrigger.whenHeld(new Dump( m_dumper ) ,true);
 
 final JoystickButton leftTrigger = new JoystickButton(leftTankJoystick, 1);        
-leftTrigger.whenHeld(new IntakeSpin( m_intake, leftTrigger ) ,true);
+leftTrigger.whenHeld(new IntakeSpin( m_intake) ,true);
    
 final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, 2);
 arcadeLeftUpStick.whenHeld(new IntakeRise(m_intake) ,true);

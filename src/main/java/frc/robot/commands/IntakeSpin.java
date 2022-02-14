@@ -23,14 +23,13 @@ import frc.robot.subsystems.Intake;
 public class IntakeSpin extends CommandBase {
 
         private final Intake m_intake;
-       private JoystickButton trigger;
        
 
-    public IntakeSpin(Intake subsystem, JoystickButton trigger) {
+    public IntakeSpin(Intake subsystem) {
 
         m_intake = subsystem;
         addRequirements(m_intake);
-        this.trigger = trigger;
+    
         
     }
 
@@ -43,13 +42,13 @@ public class IntakeSpin extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        
+        m_intake.getIntakeGroup().set(.4);
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-       // m_intake.get
+      
     }
 
     // Returns true when the command should end.

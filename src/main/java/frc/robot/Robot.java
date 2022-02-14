@@ -114,6 +114,8 @@ public class Robot extends TimedRobot {
     }else{
         m_robotContainer.getArcadeDrive().schedule();
     }
+    m_robotContainer.getIntakeSpin().schedule();
+    
     System.out.println(Math.round(RobotContainer.gyro.getAngle()));
     }
 
