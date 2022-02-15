@@ -18,6 +18,7 @@ import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj.ADIS16470_IMU;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -108,6 +109,15 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
+    if (Constants.DrivePrefrance == 0){
+        m_robotContainer.getTankDrive().schedule();
+    }else{
+        m_robotContainer.getArcadeDrive().schedule();
+    }
+    m_robotContainer.getIntakeIn().schedule();
+    m_robotContainer.getDump().schedule();
+
+    System.out.println(Math.round(RobotContainer.gyro.getAngle()));
     }
 
     @Override
