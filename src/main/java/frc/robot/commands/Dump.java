@@ -12,16 +12,16 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Dumper;
+import frc.robot.subsystems.FlyWheel;
 
 
 /**
  *
  */
 public class Dump extends CommandBase {
-        private final Dumper m_dumper;
+        private final FlyWheel m_dumper;
 
-    public Dump(Dumper subsystem) {
+    public Dump(FlyWheel subsystem) {
 
         m_dumper = subsystem;
         addRequirements(m_dumper);

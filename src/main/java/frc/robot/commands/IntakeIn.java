@@ -20,16 +20,15 @@ import frc.robot.subsystems.Intake;
 /**
  *
  */
-public class IntakeSpin extends CommandBase {
+public class IntakeIn extends CommandBase {
 
         private final Intake m_intake;
        
 
-    public IntakeSpin(Intake subsystem) {
+    public IntakeIn(Intake subsystem) {
 
         m_intake = subsystem;
         addRequirements(m_intake);
-    
         
     }
 
@@ -61,7 +60,6 @@ public class IntakeSpin extends CommandBase {
     public boolean runsWhenDisabled() {
         
         return false;
-
-    
+        
     }
 }

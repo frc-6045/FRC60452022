@@ -41,7 +41,7 @@ public class RobotContainer {
 
 // Subsystems
 public final Lift m_lift = new Lift();
-public final Dumper m_dumper = new Dumper();
+public final FlyWheel m_flyWheel = new FlyWheel();
 public final Intake m_intake = new Intake();
 public final DriveTrain m_driveTrain = new DriveTrain();
 // Joysticks
@@ -51,12 +51,12 @@ private final Joystick leftTankJoystick = new Joystick(0);
 // Commands
 private final ArcadeDrive m_ArcadeDrive = new ArcadeDrive(m_driveTrain, arcadeJoystick);
 private final TankDrive m_TankDrive = new TankDrive(m_driveTrain, leftTankJoystick, rightTankJoystick);
-private final IntakeSpin m_IntakeSpin = new IntakeSpin(m_intake);
-private final Dump m_Dump = new Dump(m_dumper);
+private final IntakeIn m_IntakeIn = new IntakeIn(m_intake);
+private final Dump m_Dump = new Dump(m_flyWheel);
 // Command Getters
 public ArcadeDrive getArcadeDrive(){ return m_ArcadeDrive; }
 public TankDrive getTankDrive(){ return m_TankDrive;}
-public IntakeSpin getIntakeSpin(){ return m_IntakeSpin;}
+public IntakeIn getIntakeIn(){ return m_IntakeIn;}
 public Dump getDump(){ return m_Dump;}
 // Gyro
 public static final ADIS16470_IMU gyro = new ADIS16470_IMU();
@@ -79,10 +79,10 @@ public static final ADIS16470_IMU gyro = new ADIS16470_IMU();
    /*
    SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
     SmartDashboard.putData("TankDrive", new TankDrive( m_driveTrain ));
-    SmartDashboard.putData("Dump", new Dump( m_dumper ));
+    SmartDashboard.putData("Dump", new Dump( m_flyWheel ));
     SmartDashboard.putData("Climb", new Climb( m_lift ));
     SmartDashboard.putData("IntakeRise", new IntakeRise( m_intake ));
-    SmartDashboard.putData("IntakeSpin", new IntakeSpin( m_intake ));
+    SmartDashboard.putData("IntakeIn", new IntakeIn( m_intake ));
 */
    
     // Configure the button bindings
@@ -109,23 +109,28 @@ public static final ADIS16470_IMU gyro = new ADIS16470_IMU();
         
 // Create some buttons
 if (Constants.DrivePrefrance == 0){
-final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, 1);        
+//TankDrive
+  final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, 1);        
 arcadeTrigger.whenPressed(new Climb( m_lift ) ,true);
 
 final JoystickButton rightTrigger = new JoystickButton(rightTankJoystick, 1);        
-rightTrigger.whenHeld(new Dump( m_dumper ) ,true);
+rightTrigger.whenHeld(new Dump( m_flyWheel ) ,true);
 
 final JoystickButton leftTrigger = new JoystickButton(leftTankJoystick, 1);        
-leftTrigger.whenHeld(new IntakeSpin( m_intake) ,true);
+leftTrigger.whenHeld(new IntakeIn( m_intake) ,true);
+
+final JoystickButton leftBigBase = new JoystickButton(leftTankJoystick, 14);
+leftBigBase.whenHeld(new IntakeIn(m_intake), true);
    
-final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, 2);
+final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, 5);
 arcadeLeftUpStick.whenHeld(new IntakeRise(m_intake) ,true);
 
 final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, 3);
 arcadeLeftDownStick.whenHeld(new IntakeRise(m_intake) ,true);
 }else{
+//ArcadeDrive
   final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, 1);        
-arcadeTrigger.whenPressed(new Dump( m_dumper ) ,true);
+arcadeTrigger.whenPressed(new Dump( m_flyWheel ) ,true);
 
 final JoystickButton rightTrigger = new JoystickButton(rightTankJoystick, 1);        
 rightTrigger.whenHeld(new IntakeRise( m_intake ) ,true);
@@ -134,10 +139,13 @@ final JoystickButton leftTrigger = new JoystickButton(leftTankJoystick, 1);
 leftTrigger.whenHeld(new IntakeRise( m_intake) ,true);
    
 final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, 2);
-arcadeLeftUpStick.whenHeld(new IntakeSpin(m_intake) ,true);
+arcadeLeftUpStick.whenHeld(new IntakeIn(m_intake) ,true);
 
 final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, 3);
-arcadeLeftDownStick.whenHeld(new IntakeSpin(m_intake) ,true);
+arcadeLeftDownStick.whenHeld(new IntakeIn(m_intake) ,true);
+
+final JoystickButton rightBigBase = new JoystickButton(rightTankJoystick, 8);        
+rightBigBase.whenPressed(new Climb( m_lift ) ,true);
 }
 
 }
