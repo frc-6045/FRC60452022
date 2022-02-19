@@ -18,7 +18,8 @@ import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj.ADIS16470_IMU;
+import frc.robot.subsystems.DriveTrain;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -84,6 +85,8 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.schedule();
         }
+        // Re-zero gyro
+        RobotContainer.gyro.reset();
     }
 
     /**
@@ -102,6 +105,9 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
+        // Re-zero gyro
+        RobotContainer.gyro.reset();
+
     }
 
     /**
@@ -109,15 +115,21 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
-    if (Constants.DrivePrefrance == 0){
+   //Schedule Drive commands
+        if (Constants.DrivePrefrance == 0){
         m_robotContainer.getTankDrive().schedule();
     }else{
         m_robotContainer.getArcadeDrive().schedule();
     }
+    //Schedule Intake commands
     m_robotContainer.getIntakeIn().schedule();
+    m_robotContainer.getIntakeOut().schedule();
+    m_robotContainer.getIntakeRise().schedule();
+    m_robotContainer.getIntakeFall().schedule();
+    // Schedule Dump commands
     m_robotContainer.getDump().schedule();
-
-    System.out.println(Math.round(RobotContainer.gyro.getAngle()));
+    
+    System.out.println(RobotContainer.gyro.getAngle());    
     }
 
     @Override

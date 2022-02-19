@@ -54,7 +54,7 @@ public class IntakeRise extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-    m_intake.getRaiseIntake().set(.4);
+    m_intake.getActuateIntake().set(.4);
     }
 
     // Called once the command ends or is interrupted.

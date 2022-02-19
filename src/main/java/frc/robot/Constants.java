@@ -13,5 +13,10 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-public static int DrivePrefrance = 0;
+//Drive Constants
+    public static int DrivePrefrance = 1;
+//Gyro Constants
+    public static double kAngleSetPoint = 1;
+    public static double kP = .008; //Proportional Turning constant
+
 }

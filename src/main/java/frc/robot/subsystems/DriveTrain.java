@@ -13,11 +13,11 @@
 package frc.robot.subsystems;
 
 
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX; 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -33,17 +33,17 @@ import edu.wpi.first.wpilibj.ADIS16470_IMU;
  *
  */
 public class DriveTrain extends SubsystemBase {
-
+//Motors
 private WPI_TalonFX frontLeftDriveMotor;
 private WPI_TalonFX backLeftDriveMotor;
-private MotorControllerGroup leftDriveMotorGroup;
 private WPI_TalonFX frontRightDriveMotor;
 private WPI_TalonFX backRightDriveMotor;
+//Motor Groups
+private MotorControllerGroup leftDriveMotorGroup;
 private MotorControllerGroup rightDriveMotorGroup;
 private DifferentialDrive differentialDrive;
 
-public DifferentialDrive getDifferentialDrive() {return differentialDrive;}
-private ADIS16470_IMU guideGyro = RobotContainer.gyro;  
+
     /**
     *
     */
@@ -131,16 +131,17 @@ differentialDrive = new DifferentialDrive(leftDriveMotorGroup, rightDriveMotorGr
 differentialDrive.setExpiration(0.1);
 differentialDrive.setMaxOutput(1.0);
 
+ 
 
+
+}
 
     
-   
-    }
 
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-
+   
     }
 
     @Override
@@ -151,6 +152,6 @@ differentialDrive.setMaxOutput(1.0);
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-
+    public DifferentialDrive getDifferentialDrive() {return differentialDrive;}
 }
 
