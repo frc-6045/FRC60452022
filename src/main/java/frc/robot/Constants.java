@@ -14,7 +14,19 @@ package frc.robot;
  */
 public final class Constants {
 //Drive Constants
-    public static int DrivePrefrance = 1;
+    public static int DrivePrefrance = 0;
+    public static double DriveSpeed = .6;
+// Autonomous Constants
+public static double autoDriveSpeed = .5;
+
+public static double autoRuntime = 8;
+//Intake Constants
+public static double intakeSpinSpeed = .4;
+public static double intakeRaiseSpeed = .4;
+//Dump Constants
+public static double dumpSpeed = .4;
+//Climb Constants
+
 //Gyro Constants
     public static double kAngleSetPoint = 1;
     public static double kP = .008; //Proportional Turning constant

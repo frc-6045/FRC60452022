@@ -5,6 +5,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class AutoTurn extends CommandBase {
   /** Creates a new AutoTurn. */
@@ -18,7 +20,11 @@ public class AutoTurn extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    double turningValue = (Constants.kAngleSetPoint -RobotContainer.gyro.getAngle()) * Constants.kP;
+        //turningValue = Math.copySign(turningValue, singleJoy.getY());
+      //m_driveTrain.getDifferentialDrive().arcadeDrive(singleJoy.getX() * .6, turningValue);
+  }
 
   // Called once the command ends or is interrupted.
   @Override

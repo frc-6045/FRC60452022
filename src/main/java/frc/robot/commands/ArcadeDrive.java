@@ -52,10 +52,10 @@ public class ArcadeDrive extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {   
-        m_driveTrain.getDifferentialDrive().arcadeDrive(singleJoy.getX() *.75, singleJoy.getY() * -.75);
+        m_driveTrain.getDifferentialDrive().arcadeDrive(singleJoy.getX() * Constants.DriveSpeed, singleJoy.getY() * -Constants.DriveSpeed);
         double turningValue = (Constants.kAngleSetPoint -RobotContainer.gyro.getAngle()) * Constants.kP;
         turningValue = Math.copySign(turningValue, singleJoy.getY());
-       
+       //m_driveTrain.getDifferentialDrive().arcadeDrive(singleJoy.getX() * .6, turningValue);
     }
 
     // Called once the command ends or is interrupted.

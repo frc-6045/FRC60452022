@@ -16,9 +16,10 @@ import edu.wpi.first.hal.FRCNetComm.tInstances;
 import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.DriveTrain;
+
 
 
 /**
@@ -33,7 +34,8 @@ public class Robot extends TimedRobot {
     private Command m_autonomousCommand;
 
     private RobotContainer m_robotContainer;
-
+    double time;
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -80,11 +82,12 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
+        time = Timer.getFPGATimestamp();
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
             m_autonomousCommand.schedule();
         }
+
         // Re-zero gyro
         RobotContainer.gyro.reset();
     }
@@ -94,6 +97,13 @@ public class Robot extends TimedRobot {
     */
     @Override
     public void autonomousPeriodic() {
+      double runTime = Timer.getFPGATimestamp();
+        if (time - runTime <= Constants.autoRuntime){
+            m_autonomousCommand.schedule();
+        }
+        else{
+            m_autonomousCommand.cancel();
+        }
     }
 
     @Override
