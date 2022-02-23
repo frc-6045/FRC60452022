@@ -49,7 +49,7 @@ private DifferentialDrive differentialDrive;
     */
     public DriveTrain() {
         
-        frontLeftDriveMotor = new WPI_TalonFX(3);
+        frontLeftDriveMotor = new WPI_TalonFX(Constants.frontLeftDriveID);
  
     /* Factory default hardware to prevent unexpected behavior */
 frontLeftDriveMotor.configFactoryDefault();
@@ -66,7 +66,7 @@ frontLeftDriveMotor.configPeakOutputReverse(-1, 30);
         
 
 
-backLeftDriveMotor = new WPI_TalonFX(2);
+backLeftDriveMotor = new WPI_TalonFX(Constants.backLeftDriveID);
  
     /* Factory default hardware to prevent unexpected behavior */
 backLeftDriveMotor.configFactoryDefault();
@@ -87,7 +87,7 @@ leftDriveMotorGroup = new MotorControllerGroup(frontLeftDriveMotor, backLeftDriv
  addChild("LeftDriveMotorGroup",leftDriveMotorGroup);
  
 
-frontRightDriveMotor = new WPI_TalonFX(1);
+frontRightDriveMotor = new WPI_TalonFX(Constants.frontRightDriveID);
  
     /* Factory default hardware to prevent unexpected behavior */
 frontRightDriveMotor.configFactoryDefault();
@@ -104,7 +104,7 @@ frontRightDriveMotor.configPeakOutputReverse(-1, 30);
         
 
 
-backRightDriveMotor = new WPI_TalonFX(15);
+backRightDriveMotor = new WPI_TalonFX(Constants.backRightDriveID);
  
     /* Factory default hardware to prevent unexpected behavior */
 backRightDriveMotor.configFactoryDefault();

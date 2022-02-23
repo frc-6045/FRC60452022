@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -13,17 +14,15 @@ import edu.wpi.first.wpilibj.Timer;
 public class AutoDrive extends CommandBase {
   /** Creates a new AutoDrive. */
   private final DriveTrain m_driveTrain;
-  double leftSpeed;
-  double rightSpeed;
+  double speed;
   double time;
   double runTime;
   
-  public AutoDrive(DriveTrain subsystem, double leftSpeed, double rightSpeed, double time) {
+  public AutoDrive(DriveTrain subsystem, double speed, double time) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_driveTrain = subsystem;
     addRequirements(m_driveTrain);
-    this.leftSpeed = leftSpeed;
-    this.rightSpeed = rightSpeed;
+    this.speed = speed;
     this.time = time;
   
   }
@@ -38,7 +37,10 @@ public class AutoDrive extends CommandBase {
   @Override
   public void execute() {
     runTime = Timer.getMatchTime();
-  m_driveTrain.getDifferentialDrive().tankDrive(leftSpeed, rightSpeed);
+ double turningValue = (Constants.kAngleSetPoint -RobotContainer.gyro.getAngle()) * Constants.kP;
+  turningValue = Math.copySign(turningValue, speed);
+m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue);
+System.out.println(RobotContainer.gyro.getAngle()); 
  }
    
 
@@ -51,6 +53,6 @@ public class AutoDrive extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return  runTime >= time;
+    return  runTime <= time;
   }
 }
