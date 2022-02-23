@@ -82,14 +82,14 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-        time = Timer.getFPGATimestamp();
+    
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
             m_autonomousCommand.schedule();
         }
 
         // Re-zero gyro
-        RobotContainer.gyro.reset();
+        //RobotContainer.gyro.reset();
     }
 
     /**
@@ -97,13 +97,10 @@ public class Robot extends TimedRobot {
     */
     @Override
     public void autonomousPeriodic() {
-      double runTime = Timer.getFPGATimestamp();
-        if (time - runTime <= Constants.autoRuntime){
+        if (m_autonomousCommand != null) {
             m_autonomousCommand.schedule();
         }
-        else{
-            m_autonomousCommand.cancel();
-        }
+
     }
 
     @Override
@@ -116,7 +113,7 @@ public class Robot extends TimedRobot {
             m_autonomousCommand.cancel();
         }
         // Re-zero gyro
-        RobotContainer.gyro.reset();
+        //RobotContainer.gyro.reset();
 
     }
 
@@ -131,6 +128,7 @@ public class Robot extends TimedRobot {
     }else{
         m_robotContainer.getArcadeDrive().schedule();
     }
+    m_robotContainer.getChangeDirection();
     //Schedule Intake commands
     m_robotContainer.getIntakeIn().schedule();
     m_robotContainer.getIntakeOut().schedule();
@@ -139,7 +137,7 @@ public class Robot extends TimedRobot {
     // Schedule Dump commands
     m_robotContainer.getDump().schedule();
     
-    System.out.println(RobotContainer.gyro.getAngle());    
+       
     }
 
     @Override

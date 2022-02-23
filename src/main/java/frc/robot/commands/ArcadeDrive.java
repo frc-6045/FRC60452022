@@ -56,6 +56,7 @@ public class ArcadeDrive extends CommandBase {
         double turningValue = (Constants.kAngleSetPoint -RobotContainer.gyro.getAngle()) * Constants.kP;
         turningValue = Math.copySign(turningValue, singleJoy.getY());
        //m_driveTrain.getDifferentialDrive().arcadeDrive(singleJoy.getX() * .6, turningValue);
+       System.out.println(RobotContainer.gyro.getAngle());
     }
 
     // Called once the command ends or is interrupted.

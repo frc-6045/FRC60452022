@@ -17,9 +17,9 @@ public final class Constants {
     public static int DrivePrefrance = 0;
     public static double DriveSpeed = .6;
 // Autonomous Constants
-public static double autoDriveSpeed = .5;
-
-public static double autoRuntime = 8;
+public static double autoDriveSpeed = .6;
+public static double autoDriveTime = 5;
+public static double autoScoreTime = 3;
 //Intake Constants
 public static double intakeSpinSpeed = .4;
 public static double intakeRaiseSpeed = .4;

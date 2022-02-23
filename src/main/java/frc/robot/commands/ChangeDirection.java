@@ -4,21 +4,25 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrain;
 
-public class AutoTurn extends CommandBase {
+public class ChangeDirection extends CommandBase {
   private final DriveTrain m_driveTrain;
-  private double speed;
-
+  private Joystick leftJoy;
+  private Joystick rightJoy;
+  private Joystick arcJoy;
   
-  /** Creates a new AutoTurn. */
-  public AutoTurn(DriveTrain subsystem) {
-    m_driveTrain = subsystem;
-    addRequirements(m_driveTrain);
+  /** Creates a new ChangeDirection. */
+  public ChangeDirection(DriveTrain subsystem, Joystick leftJoy, Joystick rightJoy, Joystick arcJoy) {
+   m_driveTrain = subsystem;
+   this.leftJoy = leftJoy;
+   this.rightJoy = rightJoy;
+   this.arcJoy = arcJoy;
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(m_driveTrain);
   }
 
   // Called when the command is initially scheduled.
@@ -28,10 +32,12 @@ public class AutoTurn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double turningValue = (Constants.kAngleSetPoint -RobotContainer.gyro.getAngle()) * Constants.kP;
-        turningValue = Math.copySign(turningValue, speed);
-      m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue);
-      System.out.println(RobotContainer.gyro.getAngle()); 
+    if (Constants.DrivePrefrance == 0){
+      m_driveTrain.getDifferentialDrive().tankDrive(leftJoy.getY() * Constants.DriveSpeed, rightJoy.getY() * -Constants.DriveSpeed);
+    }
+    else{
+      m_driveTrain.getDifferentialDrive().arcadeDrive(arcJoy.getX() * -Constants.DriveSpeed, arcJoy.getY() * Constants.DriveSpeed);
+    }
   }
 
   // Called once the command ends or is interrupted.

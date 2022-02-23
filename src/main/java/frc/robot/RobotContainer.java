@@ -52,14 +52,16 @@ private final Joystick leftTankJoystick = new Joystick(0);
 // Commands
 private final ArcadeDrive m_ArcadeDrive = new ArcadeDrive(m_driveTrain, arcadeJoystick);
 private final TankDrive m_TankDrive = new TankDrive(m_driveTrain, leftTankJoystick, rightTankJoystick);
+private final ChangeDirection m_ChangeDirection = new ChangeDirection(m_driveTrain, leftTankJoystick, rightTankJoystick, arcadeJoystick);
 private final IntakeIn m_IntakeIn = new IntakeIn(m_intake);
 private final IntakeOut m_IntakeOut = new IntakeOut(m_intake);
 private final IntakeRise m_IntakeRise = new IntakeRise(m_intake);
 private final IntakeFall m_IntakeFall = new IntakeFall(m_intake);
 private final Dump m_Dump = new Dump(m_flyWheel);
 // Command Getters
-public ArcadeDrive getArcadeDrive(){ return m_ArcadeDrive; }
+public ArcadeDrive getArcadeDrive(){ return m_ArcadeDrive;}
 public TankDrive getTankDrive(){ return m_TankDrive;}
+public ChangeDirection getChangeDirection(){ return m_ChangeDirection;}
 public IntakeIn getIntakeIn(){ return m_IntakeIn;}
 public IntakeOut getIntakeOut(){ return m_IntakeOut;}
 public IntakeRise getIntakeRise(){ return m_IntakeRise;}
@@ -96,7 +98,7 @@ public static ADIS16470_IMU gyro = new ADIS16470_IMU();
         
 
     // Configure autonomous sendable chooser
-    m_chooser.setDefaultOption("Autonomous Command", new AutonomousCommand(m_driveTrain));
+    m_chooser.setDefaultOption("Autonomous Command", new AutonomousCommand(m_driveTrain, m_flyWheel));
 
     //SmartDashboard.putData("Auto Mode", m_chooser);
   }
@@ -125,8 +127,11 @@ leftTrigger.whenHeld(new IntakeIn( m_intake) ,true);
 final JoystickButton leftBigBase = new JoystickButton(leftTankJoystick, 14);
 leftBigBase.whenHeld(new IntakeOut(m_intake), true);
 
-final JoystickButton rightBigBase = new JoystickButton(rightTankJoystick, 8);
-rightBigBase.whenPressed(new TankDrive(m_driveTrain, rightTankJoystick, leftTankJoystick));
+final JoystickButton rightBigBase = new JoystickButton(rightTankJoystick, 14);
+rightBigBase.whenPressed(new ChangeDirection(m_driveTrain, leftTankJoystick, rightTankJoystick, arcadeJoystick));
+
+final JoystickButton rightSmallBase = new JoystickButton(rightTankJoystick, 16);
+rightSmallBase.whenPressed(new TankDrive(m_driveTrain, leftTankJoystick, rightTankJoystick));
    
 final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, 5);
 arcadeLeftUpStick.whenHeld(new IntakeRise(m_intake) ,true);
@@ -148,10 +153,13 @@ arcadeLeftUpStick.whenHeld(new IntakeOut(m_intake) ,true);
 final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, 3);
 arcadeLeftDownStick.whenHeld(new IntakeIn(m_intake) ,true);
 
-/* final JoystickButton arcadeBottomLeft = new JoystickButton(arcadeJoystick, 11);
-arcadeBottomLeft.whenPressed(new ArcadeDrive(m_driveTrain, arcadeJoystick)); */
+final JoystickButton arcadeBottomLeft = new JoystickButton(arcadeJoystick, 10);
+arcadeBottomLeft.whenPressed(new ArcadeDrive(m_driveTrain, arcadeJoystick)); 
 
-final JoystickButton rightBigBase = new JoystickButton(rightTankJoystick, 8);        
+final JoystickButton arcadeBottomRight = new JoystickButton(arcadeJoystick, 12);
+arcadeBottomRight.whenPressed(new ChangeDirection(m_driveTrain, leftTankJoystick, rightTankJoystick, arcadeJoystick));
+
+final JoystickButton rightBigBase = new JoystickButton(rightTankJoystick, 14);        
 rightBigBase.whenPressed(new Climb( m_lift ) ,true);
 
 final JoystickButton rightTrigger = new JoystickButton(rightTankJoystick, 1);        
@@ -185,7 +193,7 @@ public Joystick getArcadeJoystick() {
    * @return the command to run in autonomous
   */
   public Command getAutonomousCommand() {
-    AutonomousCommand auto = new AutonomousCommand(m_driveTrain);
+    AutonomousCommand auto = new AutonomousCommand(m_driveTrain, m_flyWheel);
   
   return auto;
     // The selected command will be run in autonomous

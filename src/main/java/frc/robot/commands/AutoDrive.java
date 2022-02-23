@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -14,29 +15,32 @@ public class AutoDrive extends CommandBase {
   private final DriveTrain m_driveTrain;
   double leftSpeed;
   double rightSpeed;
+  double time;
+  double runTime;
   
-
-  public AutoDrive(DriveTrain subsystem, double leftSpeed, double rightSpeed) {
+  public AutoDrive(DriveTrain subsystem, double leftSpeed, double rightSpeed, double time) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_driveTrain = subsystem;
     addRequirements(m_driveTrain);
     this.leftSpeed = leftSpeed;
     this.rightSpeed = rightSpeed;
+    this.time = time;
   
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
+  
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
- m_driveTrain.getDifferentialDrive().tankDrive(leftSpeed, rightSpeed);
-  
-  }
+    runTime = Timer.getMatchTime();
+  m_driveTrain.getDifferentialDrive().tankDrive(leftSpeed, rightSpeed);
+ }
+   
 
   // Called once the command ends or is interrupted.
   @Override
@@ -47,6 +51,6 @@ public class AutoDrive extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return  runTime >= time;
   }
 }
