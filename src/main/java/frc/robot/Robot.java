@@ -128,15 +128,6 @@ public class Robot extends TimedRobot {
     }else{
         m_robotContainer.getArcadeDrive().schedule();
     }
-    m_robotContainer.getChangeDirection();
-    //Schedule Intake commands
-    m_robotContainer.getIntakeIn().schedule();
-    m_robotContainer.getIntakeOut().schedule();
-    m_robotContainer.getIntakeRise().schedule();
-    m_robotContainer.getIntakeFall().schedule();
-    // Schedule Dump commands
-    m_robotContainer.getDump().schedule();
-    
        
     }
 

@@ -18,7 +18,7 @@ public static int frontRightDriveID = 1;
 public static int backRightDriveID = 15;
 public static int frontLeftDriveID = 3;
 public static int backLeftDriveID = 2;
-public static int intakeSpinID = 7;
+public static int intakeSpinID = 12;
 public static int intakeRaiseID = 4;
 public static int conveyorID = 14;
 public static int dumpID = 13;
@@ -30,10 +30,10 @@ public static double autoDriveSpeed = .6;
 public static double autoDriveTime = 10;
 public static double autoScoreTime = 8;
 //Intake Constants
-public static double intakeSpinSpeed = .4;
+public static double intakeSpinSpeed = .45;
 public static double intakeRaiseSpeed = .4;
 //Dump Constants
-public static double dumpSpeed = .4;
+public static double dumpSpeed = .25;
 //Climb Constants
 
 //Gyro Constants
