@@ -26,9 +26,10 @@ public static int dumpID = 13;
 public static int DrivePrefrance = 0;
 public static double DriveSpeed = .6;
 // Autonomous Constants
-public static double autoDriveSpeed = .6;
+public static double autoDriveSpeed = .45;
 public static double autoDriveTime = 10;
 public static double autoScoreTime = 8;
+public static double autoIntakeTime = 6;
 //Intake Constants
 public static double intakeSpinSpeed = .45;
 public static double intakeRaiseSpeed = .4;

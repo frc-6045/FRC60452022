@@ -17,6 +17,7 @@ public class AutoDrive extends CommandBase {
   double speed;
   double time;
   double runTime;
+
   
   public AutoDrive(DriveTrain subsystem, double speed, double time) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -37,7 +38,7 @@ public class AutoDrive extends CommandBase {
   @Override
   public void execute() {
     runTime = Timer.getMatchTime();
- double turningValue = (Constants.kAngleSetPoint -RobotContainer.gyro.getAngle()) * Constants.kP;
+ double turningValue = (Constants.kAngleSetPoint - RobotContainer.gyro.getAngle()) * Constants.kP;
   turningValue = Math.copySign(turningValue, speed);
 m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue);
 System.out.println(RobotContainer.gyro.getAngle()); 
@@ -53,6 +54,6 @@ System.out.println(RobotContainer.gyro.getAngle());
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return  runTime <= time;
+    return  runTime <= time ;
   }
 }
