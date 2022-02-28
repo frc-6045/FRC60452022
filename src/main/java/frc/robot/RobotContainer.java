@@ -57,7 +57,7 @@ private final IntakeIn m_IntakeIn = new IntakeIn(m_intake);
 private final IntakeOut m_IntakeOut = new IntakeOut(m_intake);
 private final IntakeRise m_IntakeRise = new IntakeRise(m_intake);
 private final IntakeFall m_IntakeFall = new IntakeFall(m_intake);
-private final Dump m_Dump = new Dump(m_flyWheel);
+private final Dump m_Dump = new Dump(m_flyWheel, m_intake);
 // Command Getters
 public ArcadeDrive getArcadeDrive(){ return m_ArcadeDrive;}
 public TankDrive getTankDrive(){ return m_TankDrive;}
@@ -119,13 +119,15 @@ public static ADIS16470_IMU gyro = new ADIS16470_IMU();
 if (Constants.DrivePrefrance == 0){
 //TankDrive
 final JoystickButton rightTrigger = new JoystickButton(rightTankJoystick, 1);        
-rightTrigger.whenHeld(new Dump( m_flyWheel ) ,true);
+rightTrigger.whenHeld(new Dump( m_flyWheel, m_intake ) ,true);
 
 final JoystickButton leftTrigger = new JoystickButton(leftTankJoystick, 1);        
 leftTrigger.whenHeld(new IntakeIn( m_intake) ,true);
 
-final JoystickButton leftBigBase = new JoystickButton(leftTankJoystick, 14);
-leftBigBase.whenHeld(new IntakeOut(m_intake), true);
+final JoystickButton leftRightStick = new JoystickButton(leftTankJoystick, 4);
+final JoystickButton rightLeftStick = new JoystickButton(rightTankJoystick, 3);
+leftRightStick.whenHeld(new IntakeOut(m_intake), true);
+rightLeftStick.whenHeld(new IntakeOut(m_intake), true);
 
 final JoystickButton rightBigBase = new JoystickButton(rightTankJoystick, 14);
 rightBigBase.whenPressed(new ChangeDirection(m_driveTrain, leftTankJoystick, rightTankJoystick, arcadeJoystick));
@@ -145,7 +147,7 @@ arcadeTrigger.whenPressed(new Climb( m_lift ) ,true);
 }else{
 //ArcadeDrive
 final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, 1);        
-arcadeTrigger.whenPressed(new Dump( m_flyWheel ) ,true);
+arcadeTrigger.whenPressed(new Dump( m_flyWheel, m_intake ) ,true);
   
 final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, 2);
 arcadeLeftUpStick.whenHeld(new IntakeOut(m_intake) ,true);

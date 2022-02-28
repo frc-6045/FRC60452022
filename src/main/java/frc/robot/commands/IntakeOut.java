@@ -25,13 +25,15 @@ public class IntakeOut extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intake.getIntakeGroup().set(Constants.intakeSpinSpeed);
+    m_intake.getSpinIntake().set(Constants.intakeSpinSpeed * -1);
+    m_intake.getConveyIntake().set(Constants.conveyorSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_intake.getIntakeGroup().set(0);
+    m_intake.getSpinIntake().set(0);
+    m_intake.getConveyIntake().set(0);
   }
 
   // Returns true when the command should end.

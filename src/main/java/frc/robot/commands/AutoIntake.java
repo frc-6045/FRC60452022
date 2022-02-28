@@ -32,13 +32,15 @@ public class AutoIntake extends CommandBase {
   @Override
   public void execute() {
     runTime = Timer.getMatchTime();
-    m_Intake.getIntakeGroup().set(speed);
+    m_Intake.getSpinIntake().set(speed);
+    m_Intake.getConveyIntake().set(speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_Intake.getIntakeGroup().set(0);
+    m_Intake.getSpinIntake().set(0);
+    m_Intake.getConveyIntake().set(0);
   }
 
   // Returns true when the command should end.

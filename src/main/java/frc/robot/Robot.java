@@ -48,7 +48,7 @@ public class Robot extends TimedRobot {
         m_robotContainer = RobotContainer.getInstance();
         HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);
        // Instancing Webcams
-        CameraServer.startAutomaticCapture();
+       // CameraServer.startAutomaticCapture();
     }
 
     /**
