@@ -24,9 +24,9 @@ public static int conveyorID = 14;
 public static int dumpID = 13;
 //Drive Constants
 public static int DrivePrefrance = 0;
-public static double DriveSpeed = .5;
+public static double DriveSpeed = .6;
 // Autonomous Constants
-public static double autoDriveSpeed = .6;
+public static double autoDriveSpeed = .4;
 public static double autoDriveTime = 10;
 public static double autoScoreTime = 8;
 public static double autoIntakeTime = 6;
@@ -35,7 +35,7 @@ public static double intakeSpinSpeed = .4;
 public static double conveyorSpeed= .4;
 public static double intakeRaiseSpeed = .4;
 //Dump Constants
-public static double dumpSpeed = .3;
+public static double dumpSpeed = .6;
 //Climb Constants
 
 //Gyro Constants

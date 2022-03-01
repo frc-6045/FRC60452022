@@ -13,13 +13,15 @@ public class AutoIntake extends CommandBase {
   private final Intake m_Intake;
   private double speed;
   private double time;
-  private double runTime;
+  private double startTime;
+  private double endTime;
   
   /** Creates a new AutoIntake. */
-  public AutoIntake(Intake m_Intake, double speed, double time) {
+  public AutoIntake(Intake m_Intake, double speed, double startTime, double endTime) {
     this.m_Intake = m_Intake;
     this.speed =speed;
-    this.time = time;
+    this.startTime = startTime;
+    this.endTime = endTime;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_Intake);
   }
@@ -31,9 +33,12 @@ public class AutoIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    runTime = Timer.getMatchTime();
-    m_Intake.getSpinIntake().set(speed);
+    time = Timer.getMatchTime();
+   m_Intake.getSpinIntake().set(speed);
     m_Intake.getConveyIntake().set(speed);
+    
+  
+  
   }
 
   // Called once the command ends or is interrupted.
@@ -46,6 +51,11 @@ public class AutoIntake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return runTime <= time;
+    if ( time <= startTime && time > endTime ){
+      return false;
+    }
+    else{
+      return true;
+    }
   }
 }

@@ -14,17 +14,19 @@ import edu.wpi.first.wpilibj.Timer;
 public class AutoDrive extends CommandBase {
   /** Creates a new AutoDrive. */
   private final DriveTrain m_driveTrain;
-  double speed;
-  double time;
-  double runTime;
+  private double speed;
+  private double time;
+  private double endTime;
+  private double startTime;
 
   
-  public AutoDrive(DriveTrain subsystem, double speed, double time) {
+  public AutoDrive(DriveTrain subsystem, double speed, double startTime, double endTime) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_driveTrain = subsystem;
     addRequirements(m_driveTrain);
     this.speed = speed;
-    this.time = time;
+    this.startTime = startTime;
+    this.endTime = endTime;
   
   }
 
@@ -37,10 +39,11 @@ public class AutoDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    runTime = Timer.getMatchTime();
- double turningValue = (Constants.kAngleSetPoint - RobotContainer.gyro.getAngle()) * Constants.kP;
+    time = Timer.getMatchTime();
+    double turningValue = (Constants.kAngleSetPoint - RobotContainer.gyro.getAngle()) * Constants.kP;
   turningValue = Math.copySign(turningValue, speed);
 m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue);
+
 System.out.println(RobotContainer.gyro.getAngle()); 
  }
    
@@ -48,12 +51,17 @@ System.out.println(RobotContainer.gyro.getAngle());
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_driveTrain.getDifferentialDrive().tankDrive(0, 0);
+    m_driveTrain.getDifferentialDrive().arcadeDrive(0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return  runTime <= time ;
+    if ( time <= startTime && time > endTime ){
+      return false;
+    }
+    else{
+      return true;
+    }
   }
 }

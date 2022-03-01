@@ -100,7 +100,7 @@ public static ADIS16470_IMU gyro = new ADIS16470_IMU();
     // Configure autonomous sendable chooser
     m_chooser.setDefaultOption("Autonomous Command", new AutonomousCommand(m_driveTrain, m_intake, m_flyWheel));
 
-    //SmartDashboard.putData("Auto Mode", m_chooser);
+    SmartDashboard.putData("Auto Mode", m_chooser);
   }
 
   public static RobotContainer getInstance() {
@@ -195,11 +195,11 @@ public Joystick getArcadeJoystick() {
    * @return the command to run in autonomous
   */
   public Command getAutonomousCommand() {
-    AutonomousCommand auto = new AutonomousCommand(m_driveTrain, m_intake, m_flyWheel);
   
-  return auto;
+  
+  
     // The selected command will be run in autonomous
-   //return m_chooser.getSelected();
+   return m_chooser.getSelected();
   }
   
 

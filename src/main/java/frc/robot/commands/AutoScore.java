@@ -13,11 +13,14 @@ public class AutoScore extends CommandBase {
   private final FlyWheel m_FlyWheel;
   private double speed;
   private double time;
-  private double runTime;
+  private double startTime;
+  private double endTime;
   /** Creates a new AutoScore. */
-  public AutoScore(FlyWheel subsystem, double speed, double time) {
+  public AutoScore(FlyWheel subsystem, double speed, double startTime, double endTime) {
     m_FlyWheel = subsystem;
     this.speed = speed;
+    this.startTime = startTime;
+    this.endTime = endTime;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_FlyWheel);
   }
@@ -29,8 +32,10 @@ public class AutoScore extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  runTime = Timer.getMatchTime();
+  time = Timer.getMatchTime();
   m_FlyWheel.getDumpMotor().set(speed);
+
+
   }
 
   // Called once the command ends or is interrupted.
@@ -42,6 +47,11 @@ public class AutoScore extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return runTime <= time;
+    if ( time <= startTime && time > endTime ){
+      return false;
+    }
+    else{
+      return true;
+    }
   }
 }
