@@ -22,6 +22,7 @@ public static int intakeSpinID = 12;
 public static int intakeRaiseID = 4;
 public static int conveyorID = 14;
 public static int dumpID = 13;
+public static int liftID = 9;
 //Drive Constants
 public static int DrivePrefrance = 0;
 public static double DriveSpeed = .6;
