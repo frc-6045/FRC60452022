@@ -11,8 +11,11 @@
 
 
 package frc.robot.commands;
+import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrain;
     
 
@@ -25,6 +28,7 @@ public class TankDrive extends CommandBase {
         private final DriveTrain m_driveTrain;
         private Joystick leftJoystick;
         private Joystick rightJoystick;
+    
 
     public TankDrive(DriveTrain subsystem, Joystick left, Joystick right) {
         
@@ -32,18 +36,21 @@ public class TankDrive extends CommandBase {
         addRequirements(m_driveTrain);
         leftJoystick = left;
         rightJoystick = right;
-        
+      
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+   
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_driveTrain.getDifferentialDrive().tankDrive(leftJoystick.getY() * -.75, rightJoystick.getY() * .75);
+        m_driveTrain.getDifferentialDrive().tankDrive(leftJoystick.getY() * -Constants.autoDriveSpeed, rightJoystick.getY() * Constants.autoDriveSpeed);
+     double turningValue = (Constants.kAngleSetPoint -RobotContainer.gyro.getAngle()) * Constants.kP;
+       // turningValue = Math.copySign(turningValue, leftJoystick.getY(), rightJoystick.getY());
     }
 
   
@@ -52,7 +59,8 @@ public class TankDrive extends CommandBase {
     @Override
     public void end(boolean interrupted) {
     m_driveTrain.getDifferentialDrive().tankDrive(0, 0);
-    }
+
+}
 
     // Returns true when the command should end.
     @Override
