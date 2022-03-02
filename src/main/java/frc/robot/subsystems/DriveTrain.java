@@ -13,11 +13,11 @@
 package frc.robot.subsystems;
 
 
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX; 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -33,23 +33,23 @@ import edu.wpi.first.wpilibj.ADIS16470_IMU;
  *
  */
 public class DriveTrain extends SubsystemBase {
-
+//Motors
 private WPI_TalonFX frontLeftDriveMotor;
 private WPI_TalonFX backLeftDriveMotor;
-private MotorControllerGroup leftDriveMotorGroup;
 private WPI_TalonFX frontRightDriveMotor;
 private WPI_TalonFX backRightDriveMotor;
+//Motor Groups
+private MotorControllerGroup leftDriveMotorGroup;
 private MotorControllerGroup rightDriveMotorGroup;
 private DifferentialDrive differentialDrive;
 
-public DifferentialDrive getDifferentialDrive() {return differentialDrive;}
-private ADIS16470_IMU guideGyro = RobotContainer.gyro;  
+
     /**
     *
     */
     public DriveTrain() {
         
-        frontLeftDriveMotor = new WPI_TalonFX(3);
+        frontLeftDriveMotor = new WPI_TalonFX(Constants.frontLeftDriveID);
  
     /* Factory default hardware to prevent unexpected behavior */
 frontLeftDriveMotor.configFactoryDefault();
@@ -66,7 +66,7 @@ frontLeftDriveMotor.configPeakOutputReverse(-1, 30);
         
 
 
-backLeftDriveMotor = new WPI_TalonFX(2);
+backLeftDriveMotor = new WPI_TalonFX(Constants.backLeftDriveID);
  
     /* Factory default hardware to prevent unexpected behavior */
 backLeftDriveMotor.configFactoryDefault();
@@ -87,7 +87,7 @@ leftDriveMotorGroup = new MotorControllerGroup(frontLeftDriveMotor, backLeftDriv
  addChild("LeftDriveMotorGroup",leftDriveMotorGroup);
  
 
-frontRightDriveMotor = new WPI_TalonFX(1);
+frontRightDriveMotor = new WPI_TalonFX(Constants.frontRightDriveID);
  
     /* Factory default hardware to prevent unexpected behavior */
 frontRightDriveMotor.configFactoryDefault();
@@ -104,7 +104,7 @@ frontRightDriveMotor.configPeakOutputReverse(-1, 30);
         
 
 
-backRightDriveMotor = new WPI_TalonFX(15);
+backRightDriveMotor = new WPI_TalonFX(Constants.backRightDriveID);
  
     /* Factory default hardware to prevent unexpected behavior */
 backRightDriveMotor.configFactoryDefault();
@@ -131,16 +131,17 @@ differentialDrive = new DifferentialDrive(leftDriveMotorGroup, rightDriveMotorGr
 differentialDrive.setExpiration(0.1);
 differentialDrive.setMaxOutput(1.0);
 
+ 
 
+
+}
 
     
-   
-    }
 
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-
+   
     }
 
     @Override
@@ -151,6 +152,6 @@ differentialDrive.setMaxOutput(1.0);
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-
+    public DifferentialDrive getDifferentialDrive() {return differentialDrive;}
 }
 

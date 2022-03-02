@@ -12,19 +12,23 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.FlyWheel;
+import frc.robot.subsystems.Intake;
 
 
 /**
  *
  */
 public class Dump extends CommandBase {
-        private final FlyWheel m_dumper;
+        private final FlyWheel m_flyWheel;
+        private final Intake m_intake;
 
-    public Dump(FlyWheel subsystem) {
+    public Dump(FlyWheel subsystem, Intake m_intake) {
 
-        m_dumper = subsystem;
-        addRequirements(m_dumper);
+        m_flyWheel = subsystem;
+        this.m_intake = m_intake;
+        addRequirements(m_flyWheel, m_intake);
    
     }
 
@@ -36,12 +40,15 @@ public class Dump extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-    m_dumper.getDumpMotor().set(.4);
+    m_flyWheel.getDumpMotor().set(Constants.dumpSpeed);
+    m_intake.getConveyIntake().set(Constants.conveyorSpeed *-1); 
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+    m_flyWheel.getDumpMotor().set(0);
+    m_intake.getConveyIntake().set(0);
     }
 
     // Returns true when the command should end.
