@@ -11,6 +11,7 @@
 // ROBOTBUILDER TYPE: Command.
 
 package frc.robot.commands;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
@@ -26,13 +27,14 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
  *
  */
 public class AutonomousCommand extends SequentialCommandGroup {
+     static  double timer = Timer.getMatchTime();
 
     public AutonomousCommand(DriveTrain drive, Intake intake, FlyWheel fly) {
-        super ( //new AutoIntake(intake, Constants.intakeSpinSpeed, 13, 11),
-                new AutoDrive(drive, Constants.autoDriveSpeed, 11, 9)
-               /* new AutoIntake(intake, Constants.intakeSpinSpeed, 9), 
-                new AutoDrive(drive, Constants.autoDriveSpeed * -1, 7), 
-                new AutoScore(fly, Constants.dumpSpeed, 9,7)*/);
+        super ( //new AutoIntake(intake, Constants.intakeSpinSpeed, timer, 13, 12),
+                new AutoDrive(drive, Constants.autoDriveSpeed, timer, 14, 9)
+               /* new AutoIntake(intake, Constants.intakeSpinSpeed, 8.5, 7.5), 
+                new AutoDrive(drive, Constants.autoDriveSpeed * -1, timer,7, 4.5), 
+                new AutoScore(fly, Constants.dumpSpeed, timer, 4,2)*/);
     
     }
 /*
