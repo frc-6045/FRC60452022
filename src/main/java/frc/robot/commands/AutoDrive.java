@@ -41,11 +41,12 @@ public class AutoDrive extends CommandBase {
   @Override
   public void execute() {
     
-    double turningValue = (Constants.kAngleSetPoint - RobotContainer.gyro.getAngle()) * Constants.kP;
-  turningValue = Math.copySign(turningValue, speed);
-m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue);
+  double turningValue = (Constants.kAngleSetPoint - RobotContainer.gyro.getAngle()) * Constants.kP;
+  //turningValue = Math.copySign(turningValue, speed);
+  m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue); 
+//m_driveTrain.getDifferentialDrive().tankDrive(speed, speed);
 
-System.out.println(RobotContainer.gyro.getAngle()); 
+System.out.println(Math.round(RobotContainer.gyro.getAngle())); 
  }
    
 

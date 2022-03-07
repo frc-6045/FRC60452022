@@ -53,10 +53,10 @@ public class ArcadeDrive extends CommandBase {
     @Override
     public void execute() {   
         m_driveTrain.getDifferentialDrive().arcadeDrive(singleJoy.getX() * Constants.DriveSpeed, singleJoy.getY() * -Constants.DriveSpeed);
-        double turningValue = (Constants.kAngleSetPoint -RobotContainer.gyro.getAngle()) * Constants.kP;
+      /*  double turningValue = (Constants.kAngleSetPoint -RobotContainer.gyro.getAngle()) * Constants.kP;
         turningValue = Math.copySign(turningValue, singleJoy.getY());
-       //m_driveTrain.getDifferentialDrive().arcadeDrive(singleJoy.getX() * .6, turningValue);
-       System.out.println(RobotContainer.gyro.getAngle());
+       m_driveTrain.getDifferentialDrive().arcadeDrive(singleJoy.getX() * .6, turningValue);
+       System.out.println(RobotContainer.gyro.getAngle()); */
     }
 
     // Called once the command ends or is interrupted.

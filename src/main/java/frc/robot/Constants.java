@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -26,11 +28,6 @@ public static int liftID = 9;
 //Drive Constants
 public static int DrivePrefrance = 0;
 public static double DriveSpeed = .6;
-// Autonomous Constants
-public static double autoDriveSpeed = .4;
-public static double autoDriveTime = 10;
-public static double autoScoreTime = 8;
-public static double autoIntakeTime = 6;
 //Intake Constants
 public static double intakeSpinSpeed = .4;
 public static double conveyorSpeed= .4;
@@ -38,9 +35,27 @@ public static double intakeRaiseSpeed = .4;
 //Dump Constants
 public static double dumpSpeed = .6;
 //Climb Constants
-
+// Autonomous Constants
+public static double autoDriveSpeed = .4;
+public static double autoDriveTime = 10;
+public static double autoScoreTime = 8;
+public static double autoIntakeTime = 6;
 //Gyro Constants
 public static double kAngleSetPoint = 0;
-public static double kP = .008; //Proportional Turning constant
+public static double kP = .009; //Proportional Turning constant
+//Joystick Buttons
+    //Tank Joysticks
+public static int rightTriggerID = 1;
+public static int leftTriggerID = 1;
+public static int leftStickTopRightID = 4;
+public static int rightStickTopLeftID = 3;
+public static int rightOutsideBigBaseID = 14;
+public static int rightOutsideSmallBaseID = 16;
+    //Arcade Joystick
+public static int arcadeTriggerID = 1;
+public static int arcadeLeftUpStickID = 5;
+public static int arcadeLeftDownStickID = 3;
+public static int arcadeBottomLeftID = 10;
+public static int arcadeBottomRightID = 12;
 
 }
