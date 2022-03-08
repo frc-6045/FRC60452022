@@ -28,6 +28,7 @@ public class TankDrive extends CommandBase {
         private final DriveTrain m_driveTrain;
         private Joystick leftJoystick;
         private Joystick rightJoystick;
+        private double driveScale;
     
 
     public TankDrive(DriveTrain subsystem, Joystick left, Joystick right) {
@@ -42,13 +43,13 @@ public class TankDrive extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-   
+    driveScale = (1+ leftJoystick.getRawAxis(3)) * .5;
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_driveTrain.getDifferentialDrive().tankDrive(leftJoystick.getY() * -Constants.DriveSpeed, rightJoystick.getY() * Constants.DriveSpeed);
+        m_driveTrain.getDifferentialDrive().tankDrive(leftJoystick.getY() * -Constants.DriveSpeed * driveScale, rightJoystick.getY() * Constants.DriveSpeed * driveScale);
      //double turningValue = (Constants.kAngleSetPoint -RobotContainer.gyro.getAngle()) * Constants.kP;
        // turningValue = Math.copySign(turningValue, leftJoystick.getY(), rightJoystick.getY());
     }
