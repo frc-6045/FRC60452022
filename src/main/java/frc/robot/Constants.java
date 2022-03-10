@@ -13,6 +13,7 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
 // Motor Constants
 public static int frontRightDriveID = 1;
 public static int backRightDriveID = 15;
@@ -38,7 +39,7 @@ public static double intakeRaiseSpeed = .4;
 //Dump Constants
 public static double dumpSpeed = .6;
 //Climb Constants
-
+public static final double liftMotorSpeed = 0.4;
 //Gyro Constants
 public static double kAngleSetPoint = 0;
 public static double kP = .008; //Proportional Turning constant
