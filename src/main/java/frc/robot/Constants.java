@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -21,7 +20,7 @@ public static int backRightDriveID = 15;
 public static int frontLeftDriveID = 3;
 public static int backLeftDriveID = 2;
 public static int intakeSpinID = 12;
-public static int intakeRaiseID = 4;
+public static int intakeRaiseID = 0;
 public static int conveyorID = 14;
 public static int dumpID = 13;
 public static int liftID = 9;

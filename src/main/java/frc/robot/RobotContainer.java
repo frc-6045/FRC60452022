@@ -23,7 +23,6 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.subsystems.*;
 
 
 
@@ -140,7 +139,7 @@ final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, Cons
 arcadeLeftUpStick.whenHeld(new IntakeRise(m_intake) ,true);
 
 final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftDownStickID);
-arcadeLeftDownStick.whenHeld(new IntakeRise(m_intake) ,true);
+arcadeLeftDownStick.whenHeld(new IntakeFall(m_intake) ,true);
 
 final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, Constants.arcadeTriggerID);        
 arcadeTrigger.whenPressed(new Climb( m_lift ) ,true);
@@ -169,7 +168,7 @@ final JoystickButton rightTrigger = new JoystickButton(rightTankJoystick, Consta
 rightTrigger.whenHeld(new IntakeRise( m_intake ) ,true);
 
 final JoystickButton leftTrigger = new JoystickButton(leftTankJoystick, Constants.leftTriggerID);        
-leftTrigger.whenHeld(new IntakeRise( m_intake) ,true);
+leftTrigger.whenHeld(new IntakeFall( m_intake) ,true);
 }
 
 }

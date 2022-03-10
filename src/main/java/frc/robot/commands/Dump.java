@@ -16,10 +16,6 @@ import frc.robot.Constants;
 import frc.robot.subsystems.FlyWheel;
 import frc.robot.subsystems.Intake;
 
-
-/**
- *
- */
 public class Dump extends CommandBase {
         private final FlyWheel m_flyWheel;
         private final Intake m_intake;

@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrain;
-import edu.wpi.first.wpilibj.Timer;
 
 
 public class AutoDrive extends CommandBase {
@@ -43,10 +42,10 @@ public class AutoDrive extends CommandBase {
     
   double turningValue = (Constants.kAngleSetPoint - RobotContainer.gyro.getAngle()) * Constants.kP;
   //turningValue = Math.copySign(turningValue, speed);
-  m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue); 
-//m_driveTrain.getDifferentialDrive().tankDrive(speed, speed);
+  //m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue); 
+  m_driveTrain.getDifferentialDrive().arcadeDrive(speed, 0);
 
-System.out.println(Math.round(RobotContainer.gyro.getAngle())); 
+System.out.println((RobotContainer.gyro.getAngle())); 
  }
    
 
