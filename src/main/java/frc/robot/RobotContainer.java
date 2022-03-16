@@ -56,7 +56,7 @@ private final IntakeIn m_IntakeIn = new IntakeIn(m_intake);
 private final IntakeOut m_IntakeOut = new IntakeOut(m_intake);
 private final IntakeRise m_IntakeRise = new IntakeRise(m_intake);
 private final IntakeFall m_IntakeFall = new IntakeFall(m_intake);
-private final Dump m_Dump = new Dump(m_flyWheel, m_intake);
+private final Dump m_Dump = new Dump(m_flyWheel, m_intake, rightTankJoystick);
 // Command Getters
 public ArcadeDrive getArcadeDrive(){ return m_ArcadeDrive;}
 public TankDrive getTankDrive(){ return m_TankDrive;}
@@ -119,7 +119,7 @@ public static ADIS16470_IMU gyro = new ADIS16470_IMU();
 if (Constants.DrivePrefrance == 0){
 //TankDrive
 final JoystickButton rightTrigger = new JoystickButton(rightTankJoystick, Constants.rightTriggerID);        
-rightTrigger.whenHeld(new Dump( m_flyWheel, m_intake ) ,true);
+rightTrigger.whenHeld(new Dump( m_flyWheel, m_intake, rightTankJoystick ) ,true);
 
 final JoystickButton leftTrigger = new JoystickButton(leftTankJoystick, Constants.leftTriggerID);        
 leftTrigger.whenHeld(new IntakeIn( m_intake) ,true);
@@ -147,7 +147,7 @@ arcadeTrigger.whenPressed(new Climb( m_lift ) ,true);
 }else{
 //ArcadeDrive
 final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, Constants.arcadeTriggerID);        
-arcadeTrigger.whenPressed(new Dump( m_flyWheel, m_intake ) ,true);
+arcadeTrigger.whenPressed(new Dump( m_flyWheel, m_intake, rightTankJoystick ) ,true);
   
 final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftUpStickID);
 arcadeLeftUpStick.whenHeld(new IntakeOut(m_intake) ,true);

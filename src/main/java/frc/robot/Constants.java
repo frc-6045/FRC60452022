@@ -30,7 +30,7 @@ public static double DriveSpeed = .6;
 //Intake Constants
 public static double intakeSpinSpeed = .4;
 public static double conveyorSpeed= .4;
-public static double intakeRaiseSpeed = .4;
+public static double intakeRaiseSpeed = .3;
 //Dump Constants
 public static double dumpSpeed = .6;
 //Climb Constants
@@ -41,7 +41,7 @@ public static double autoScoreTime = 8;
 public static double autoIntakeTime = 6;
 //Gyro Constants
 public static double kAngleSetPoint = 0;
-public static double kP = .009; //Proportional Turning constant
+public static double kP = 1/180 ; //Proportional Turning constant
 //Joystick Buttons
     //Tank Joysticks
 public static int rightTriggerID = 1;

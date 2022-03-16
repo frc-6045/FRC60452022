@@ -5,44 +5,42 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.FlyWheel;
+import frc.robot.subsystems.Intake;
 
-public class AutoScore extends CommandBase {
-  private final FlyWheel m_FlyWheel;
+public class AutoActuate extends CommandBase {
+  /** Creates a new AutoActuate. */
+  private Intake m_intake;
   private double speed;
   private double timer;
   private double startTime;
   private double endTime;
-  /** Creates a new AutoScore. */
-  public AutoScore(FlyWheel subsystem, double speed, double timer, double startTime, double endTime) {
-    m_FlyWheel = subsystem;
+
+  public AutoActuate(Intake subsystem, double speed, double timer, double startTime, double endTime) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    m_intake = subsystem;
+    addRequirements(m_intake);
     this.speed = speed;
+    this.timer = timer;
     this.startTime = startTime;
     this.endTime = endTime;
-    this.timer = timer;
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_FlyWheel);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_FlyWheel.getDumpMotor().set(0);
+    m_intake.getActuateIntake().set(0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  
-  m_FlyWheel.getDumpMotor().set(speed);
-
-
+    m_intake.getActuateIntake().set(speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_FlyWheel.getDumpMotor().set(0);
+    m_intake.getActuateIntake().set(0);
   }
 
   // Returns true when the command should end.

@@ -11,6 +11,7 @@
 // ROBOTBUILDER TYPE: Command.
 
 package frc.robot.commands;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.FlyWheel;
@@ -19,11 +20,14 @@ import frc.robot.subsystems.Intake;
 public class Dump extends CommandBase {
         private final FlyWheel m_flyWheel;
         private final Intake m_intake;
+       private double dumpScale;
+        private Joystick rightJoystick; 
 
-    public Dump(FlyWheel subsystem, Intake m_intake) {
+    public Dump(FlyWheel subsystem, Intake m_intake, Joystick rightJoystick) {
 
         m_flyWheel = subsystem;
         this.m_intake = m_intake;
+        this.rightJoystick = rightJoystick;
         addRequirements(m_flyWheel, m_intake);
    
     }
@@ -36,7 +40,9 @@ public class Dump extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-    m_flyWheel.getDumpMotor().set(Constants.dumpSpeed);
+    dumpScale = ((1+ rightJoystick.getRawAxis(3)) * .5);
+    //m_flyWheel.getDumpMotor().set(Constants.dumpSpeed);
+    m_flyWheel.getDumpMotor().set(Constants.dumpSpeed * dumpScale);
     m_intake.getConveyIntake().set(Constants.conveyorSpeed *-1); 
     }
 

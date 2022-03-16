@@ -33,19 +33,24 @@ public class AutoDrive extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-  
+    m_driveTrain.getDifferentialDrive().arcadeDrive(0, 0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
+  //m_driveTrain.getDifferentialDrive().arcadeDrive(speed, 0);  
   double turningValue = (Constants.kAngleSetPoint - RobotContainer.gyro.getAngle()) * Constants.kP;
   //turningValue = Math.copySign(turningValue, speed);
-  //m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue); 
-  m_driveTrain.getDifferentialDrive().arcadeDrive(speed, 0);
-
-System.out.println((RobotContainer.gyro.getAngle())); 
+  m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue); 
+  System.out.println((RobotContainer.gyro.getAngle())); 
+ /* if ( timer <= startTime && timer > endTime ){
+    m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue);
+  }
+  else{
+    m_driveTrain.getDifferentialDrive().arcadeDrive(0,0); 
+  } */
+  //System.out.println(timer);
  }
    
 
@@ -63,6 +68,7 @@ System.out.println((RobotContainer.gyro.getAngle()));
     }
     else{
       return true;
-    }
+    } 
+    //return false;
   }
 }

@@ -35,12 +35,13 @@ public class ArcadeDrive extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        driveScale = (1+ singleJoy.getRawAxis(3)) * .5;
+     
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {   
+        driveScale = (1+ singleJoy.getRawAxis(3)) * .5;    
         m_driveTrain.getDifferentialDrive().arcadeDrive(singleJoy.getX() * Constants.DriveSpeed * driveScale, singleJoy.getY() * -Constants.DriveSpeed * driveScale);
       /*  double turningValue = (Constants.kAngleSetPoint -RobotContainer.gyro.getAngle()) * Constants.kP;
         turningValue = Math.copySign(turningValue, singleJoy.getY());
