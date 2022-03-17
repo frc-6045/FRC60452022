@@ -56,7 +56,7 @@ private final IntakeIn m_IntakeIn = new IntakeIn(m_intake);
 private final IntakeOut m_IntakeOut = new IntakeOut(m_intake);
 private final IntakeRise m_IntakeRise = new IntakeRise(m_intake);
 private final IntakeFall m_IntakeFall = new IntakeFall(m_intake);
-private final Dump m_Dump = new Dump(m_flyWheel, m_intake);
+private final Dump m_Dump = new Dump(m_flyWheel, m_intake, rightTankJoystick);
 private final Climb m_Climb = new Climb(m_lift);
 // Command Getters
 public ArcadeDrive getArcadeDrive(){ return m_ArcadeDrive;}
