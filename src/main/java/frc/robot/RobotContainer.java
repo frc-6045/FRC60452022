@@ -56,8 +56,8 @@ private final IntakeIn m_IntakeIn = new IntakeIn(m_intake);
 private final IntakeOut m_IntakeOut = new IntakeOut(m_intake);
 private final IntakeRise m_IntakeRise = new IntakeRise(m_intake);
 private final IntakeFall m_IntakeFall = new IntakeFall(m_intake);
-private final Dump m_Dump = new Dump(m_flyWheel, m_intake, rightTankJoystick);
-
+private final Dump m_Dump = new Dump(m_flyWheel, m_intake);
+private final Climb m_Climb = new Climb(m_lift);
 // Command Getters
 public ArcadeDrive getArcadeDrive(){ return m_ArcadeDrive;}
 public TankDrive getTankDrive(){ return m_TankDrive;}
@@ -67,7 +67,7 @@ public IntakeOut getIntakeOut(){ return m_IntakeOut;}
 public IntakeRise getIntakeRise(){ return m_IntakeRise;}
 public IntakeFall getIntakeFall(){ return m_IntakeFall;}
 public Dump getDump(){ return m_Dump;}
-
+public Climb getClimb(){return m_Climb;}
 // Gyro
 public static ADIS16470_IMU gyro = new ADIS16470_IMU();
 
@@ -142,9 +142,10 @@ arcadeLeftUpStick.whenHeld(new IntakeRise(m_intake) ,true);
 
 final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftDownStickID);
 arcadeLeftDownStick.whenHeld(new IntakeFall(m_intake) ,true);
-
-final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, Constants.arcadeTriggerID);        
+  
+final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, 1);        
 arcadeTrigger.whenHeld(new Climb( m_lift ) ,true);
+
 
 }else{
 //ArcadeDrive
