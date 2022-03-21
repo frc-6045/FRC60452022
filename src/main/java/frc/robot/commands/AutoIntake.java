@@ -36,8 +36,6 @@ public class AutoIntake extends CommandBase {
     
    m_Intake.getSpinIntake().set(speed);
     m_Intake.getConveyIntake().set(speed);
-    
-  
   
   }
 

@@ -132,10 +132,9 @@ leftStickTopRight.whenHeld(new IntakeOut(m_intake), true);
 rightStickTopLeft.whenHeld(new IntakeOut(m_intake), true);
 
 final JoystickButton rightOutsideBigBase = new JoystickButton(rightTankJoystick, Constants.rightOutsideBigBaseID);
-rightOutsideBigBase.whenPressed(new ChangeDirection(m_driveTrain, leftTankJoystick, rightTankJoystick, arcadeJoystick));
-
 final JoystickButton rightOutsideSmallBase = new JoystickButton(rightTankJoystick, Constants.rightOutsideSmallBaseID);
-rightOutsideSmallBase.whenPressed(new TankDrive(m_driveTrain, leftTankJoystick, rightTankJoystick));
+rightOutsideBigBase.whenPressed(new ChangeDirection(m_driveTrain, leftTankJoystick, rightTankJoystick, arcadeJoystick), true);
+rightOutsideSmallBase.whenPressed(new TankDrive(m_driveTrain, leftTankJoystick, rightTankJoystick), true);
    
 final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftUpStickID);
 arcadeLeftUpStick.whenHeld(new IntakeRise(m_intake) ,true);
