@@ -4,7 +4,9 @@
 
 package frc.robot;
 
+
 import java.util.function.DoubleSupplier;
+
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -22,10 +24,10 @@ public static int backRightDriveID = 15;
 public static int frontLeftDriveID = 3;
 public static int backLeftDriveID = 2;
 public static int intakeSpinID = 12;
-public static int intakeRaiseID = 4;
+public static int intakeRaiseID = 0;
 public static int conveyorID = 14;
 public static int dumpID = 13;
-public static int liftID = 9;
+public static int liftID = 5;
 //Drive Constants
 public static int DrivePrefrance = 0;
 public static double DriveSpeed = .6;
@@ -36,11 +38,13 @@ public static double autoScoreTime = 8;
 public static double autoIntakeTime = 6;
 //Intake Constants
 public static double intakeSpinSpeed = .4;
-public static double conveyorSpeed= .4;
+public static double conveyorSpeed= .23;
 public static double intakeRaiseSpeed = .4;
+public static double intakeFallSpeed = .1;
 //Dump Constants
-public static double dumpSpeed = .6;
+public static double dumpSpeed = .35;
 //Climb Constants
+
 public static final double liftMotorSpeed = 0.1;
 //PID Constants
 public static final double DrivePIDkd = 0;
@@ -59,6 +63,20 @@ public static final double autoDriveDistance = 200000;
 
 //Gyro Constants
 public static double kAngleSetPoint = 0;
-public static double kP = .008; //Proportional Turning constant
+public static double kP = 1/180 ; //Proportional Turning constant
+//Joystick Buttons
+    //Tank Joysticks
+public static int rightTriggerID = 1;
+public static int leftTriggerID = 1;
+public static int leftStickTopRightID = 4;
+public static int rightStickTopLeftID = 3;
+public static int rightOutsideBigBaseID = 14;
+public static int rightOutsideSmallBaseID = 16;
+    //Arcade Joystick
+public static int arcadeTriggerID = 1;
+public static int arcadeLeftUpStickID = 5;
+public static int arcadeLeftDownStickID = 3;
+public static int arcadeBottomLeftID = 10;
+public static int arcadeBottomRightID = 12;
 
 }

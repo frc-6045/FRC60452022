@@ -4,46 +4,43 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake;
 
-public class AutoIntake extends CommandBase {
-  private final Intake m_Intake;
+public class AutoActuate extends CommandBase {
+  /** Creates a new AutoActuate. */
+  private Intake m_intake;
   private double speed;
   private double timer;
   private double startTime;
   private double endTime;
-  
-  /** Creates a new AutoIntake. */
-  public AutoIntake(Intake m_Intake, double speed, double timer, double startTime, double endTime) {
-    this.m_Intake = m_Intake;
-    this.speed =speed;
+
+  public AutoActuate(Intake subsystem, double speed, double timer, double startTime, double endTime) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    m_intake = subsystem;
+    addRequirements(m_intake);
+    this.speed = speed;
+    this.timer = timer;
     this.startTime = startTime;
     this.endTime = endTime;
-    this.timer = timer;
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_Intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    m_intake.getActuateIntake().set(0);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
-   m_Intake.getSpinIntake().set(speed);
-    m_Intake.getConveyIntake().set(speed);
-  
+    m_intake.getActuateIntake().set(speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_Intake.getSpinIntake().set(0);
-    m_Intake.getConveyIntake().set(0);
+    m_intake.getActuateIntake().set(0);
   }
 
   // Returns true when the command should end.
