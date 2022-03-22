@@ -31,7 +31,7 @@ public class AutonomousCommand extends SequentialCommandGroup {
 
     public AutonomousCommand(DriveTrain drive, Intake intake, FlyWheel fly) {
         super ( //new AutoIntake(intake, Constants.intakeSpinSpeed, timer, 13, 12),
-                new AutoDriveDistance(drive)
+                new AutoDrivePID(drive)
                /* new AutoIntake(intake, Constants.intakeSpinSpeed, 8.5, 7.5), 
                 new AutoDrive(drive, Constants.autoDriveSpeed * -1, timer,7, 4.5), 
                 new AutoScore(fly, Constants.dumpSpeed, timer, 4,2)*/);
