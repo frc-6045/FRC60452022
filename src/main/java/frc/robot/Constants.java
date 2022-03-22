@@ -45,7 +45,7 @@ public static final double liftMotorSpeed = 0.1;
 //PID Constants
 public static final double DrivePIDkd = 0;
 public static final double DrivePIDki = 0;
-public static final double DrivePIDkp = 0.1;
+public static final double DrivePIDkp = 0.0000001;
 public static final double DrivePIDToleranceRPS = 0;
 public static final double DrivePIDTargetPosition = 0;
 public static final double DrivePIDTolerance = 0;

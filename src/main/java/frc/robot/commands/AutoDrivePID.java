@@ -33,7 +33,7 @@ public class AutoDrivePID extends PIDCommand {
         Constants.autoDriveDistance,
         // This uses the output
         output -> {
-          m_DriveTrain.getDifferentialDrive().tankDrive(output* 0.01, -(output * 0.01));
+          m_DriveTrain.getDifferentialDrive().tankDrive(output* 0.4, -(output * 0.4));
           System.out.println(GetPosition.GettingMotorPosition());
         },  
         m_DriveTrain);
