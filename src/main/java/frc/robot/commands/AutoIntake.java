@@ -11,17 +11,16 @@ import frc.robot.subsystems.Intake;
 public class AutoIntake extends CommandBase {
   private final Intake m_Intake;
   private double speed;
-  private double timer;
   private double startTime;
   private double endTime;
   
   /** Creates a new AutoIntake. */
-  public AutoIntake(Intake m_Intake, double speed, double timer, double startTime, double endTime) {
+  public AutoIntake(Intake m_Intake, double speed, double startTime, double endTime) {
     this.m_Intake = m_Intake;
     this.speed =speed;
     this.startTime = startTime;
     this.endTime = endTime;
-    this.timer = timer;
+  
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_Intake);
   }
@@ -36,6 +35,7 @@ public class AutoIntake extends CommandBase {
     
    m_Intake.getSpinIntake().set(speed);
     m_Intake.getConveyIntake().set(speed);
+    System.out.println(AutonomousCommand.timer);
   
   }
 
@@ -49,7 +49,7 @@ public class AutoIntake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if ( timer <= startTime && timer > endTime ){
+    if ( AutonomousCommand.timer >= startTime && AutonomousCommand.timer < endTime ){
       return false;
     }
     else{
