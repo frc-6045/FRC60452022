@@ -6,21 +6,18 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Intake;
 
 public class AutoIntake extends CommandBase {
   private final Intake m_Intake;
-  private double speed;
-  private double startTime;
-  private double endTime;
+  private double startTime = 1;
+  private double endTime = 2;
   
   /** Creates a new AutoIntake. */
-  public AutoIntake(Intake m_Intake, double speed, double startTime, double endTime) {
+  public AutoIntake(Intake m_Intake) {
     this.m_Intake = m_Intake;
-    this.speed =speed;
-    this.startTime = startTime;
-    this.endTime = endTime;
-  
+    
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_Intake);
   }
@@ -31,10 +28,22 @@ public class AutoIntake extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
+  public void execute() { 
+  /* m_Intake.getSpinIntake().set(speed);
+    m_Intake.getConveyIntake().set(speed); */
+    if ( AutonomousCommand.timer >= startTime && AutonomousCommand.timer < endTime ){
+     m_Intake.getSpinIntake().set(Constants.intakeSpinSpeed);
+    m_Intake.getConveyIntake().set(Constants.conveyorSpeed);
+    }
+    else if (0 <= AutonomousCommand.timer && AutonomousCommand.timer < startTime){
+      m_Intake.getSpinIntake().set(0);
+      m_Intake.getConveyIntake().set(0);
+    }
+    else{
+      m_Intake.getSpinIntake().set(0);
+    m_Intake.getConveyIntake().set(0);
+    }
     
-   m_Intake.getSpinIntake().set(speed);
-    m_Intake.getConveyIntake().set(speed);
     System.out.println(AutonomousCommand.timer);
   
   }
@@ -52,8 +61,12 @@ public class AutoIntake extends CommandBase {
     if ( AutonomousCommand.timer >= startTime && AutonomousCommand.timer < endTime ){
       return false;
     }
-    else{
-      return true;
+    else if (0 <= AutonomousCommand.timer && AutonomousCommand.timer < startTime){
+      return false;
     }
+    else {
+      return true;
+    } 
+    //return false;
   }
 }

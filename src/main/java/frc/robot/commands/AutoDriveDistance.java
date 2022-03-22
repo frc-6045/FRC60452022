@@ -34,7 +34,7 @@ public class AutoDriveDistance extends CommandBase {
   public void execute() {
     while (RobotContainer.frontLeftDriveMotor2.getSelectedSensorPosition() < Constants.autoDriveDistance) {
       m_driveTrain.getDifferentialDrive().tankDrive(Constants.autoDriveSpeed, -Constants.autoDriveSpeed);
-      System.out.println(RobotContainer.frontLeftDriveMotor2.getSelectedSensorPosition());
+     /* System.out.println(RobotContainer.frontLeftDriveMotor2.getSelectedSensorPosition()); */
   }
   }
 
