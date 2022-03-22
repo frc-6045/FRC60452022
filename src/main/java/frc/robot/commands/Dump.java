@@ -41,8 +41,8 @@ public class Dump extends CommandBase {
     @Override
     public void execute() {
     dumpScale = ((1+ rightJoystick.getRawAxis(3)) * .5);
-    //m_flyWheel.getDumpMotor().set(Constants.dumpSpeed);
-    m_flyWheel.getDumpMotor().set(Constants.dumpSpeed * dumpScale);
+    m_flyWheel.getDumpMotor().set(Constants.dumpSpeed);
+    //m_flyWheel.getDumpMotor().set(Constants.dumpSpeed * dumpScale);
     m_intake.getConveyIntake().set(Constants.conveyorSpeed *-1); 
     }
 

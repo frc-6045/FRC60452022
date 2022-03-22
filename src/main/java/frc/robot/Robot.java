@@ -94,6 +94,11 @@ public class Robot extends TimedRobot {
             m_autonomousCommand.schedule();
         }
 
+        //reset Encoder
+        RobotContainer.frontLeftDriveMotor2.setSelectedSensorPosition(0);
+        // Re-zero gyro
+        //RobotContainer.gyro.reset();
+
     }
 
     /**

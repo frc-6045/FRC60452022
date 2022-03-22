@@ -21,11 +21,11 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 
 public class AutonomousCommand extends SequentialCommandGroup {
-     static  double timer = Timer.getMatchTime();
+     static  double timer = Timer.getFPGATimestamp();
 
     public AutonomousCommand(DriveTrain drive, Intake intake, FlyWheel fly) {
-        super ( //new AutoIntake(intake, Constants.intakeSpinSpeed, timer, 13, 12),
-                new AutoDrive(drive, Constants.autoDriveSpeed, timer, 14, 9)
+        super ( new AutoIntake(intake, Constants.intakeSpinSpeed, 0, 2),
+                new AutoDriveDistance(drive)
                /* new AutoIntake(intake, Constants.intakeSpinSpeed, 8.5, 7.5), 
                 new AutoDrive(drive, Constants.autoDriveSpeed * -1, timer,7, 4.5), 
                 new AutoScore(fly, Constants.dumpSpeed, timer, 4,2)*/);

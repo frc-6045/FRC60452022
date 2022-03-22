@@ -21,6 +21,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -70,6 +73,7 @@ public Dump getDump(){ return m_Dump;}
 public Climb getClimb(){return m_Climb;}
 // Gyro
 public static ADIS16470_IMU gyro = new ADIS16470_IMU();
+public static WPI_TalonFX frontLeftDriveMotor2 = new WPI_TalonFX(Constants.frontLeftDriveID);
 
 
 

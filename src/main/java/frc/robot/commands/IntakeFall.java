@@ -24,7 +24,7 @@ public class IntakeFall extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intake.getActuateIntake().set(Constants.intakeRaiseSpeed);
+    m_intake.getActuateIntake().set(Constants.intakeFallSpeed);
   }
 
   // Called once the command ends or is interrupted.
