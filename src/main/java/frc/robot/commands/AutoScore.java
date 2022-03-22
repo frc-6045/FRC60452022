@@ -4,9 +4,7 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.subsystems.FlyWheel;
 
 public class AutoScore extends CommandBase {
@@ -28,7 +26,9 @@ public class AutoScore extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    m_FlyWheel.getDumpMotor().set(0);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

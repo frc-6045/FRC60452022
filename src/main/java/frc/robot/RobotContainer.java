@@ -26,7 +26,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.subsystems.*;
 
 
 
@@ -60,7 +59,7 @@ private final IntakeIn m_IntakeIn = new IntakeIn(m_intake);
 private final IntakeOut m_IntakeOut = new IntakeOut(m_intake);
 private final IntakeRise m_IntakeRise = new IntakeRise(m_intake);
 private final IntakeFall m_IntakeFall = new IntakeFall(m_intake);
-private final Dump m_Dump = new Dump(m_flyWheel, m_intake);
+private final Dump m_Dump = new Dump(m_flyWheel, m_intake, rightTankJoystick);
 private final Climb m_Climb = new Climb(m_lift);
 // Command Getters
 public ArcadeDrive getArcadeDrive(){ return m_ArcadeDrive;}
@@ -75,6 +74,7 @@ public Climb getClimb(){return m_Climb;}
 // Gyro
 public static ADIS16470_IMU gyro = new ADIS16470_IMU();
 public static WPI_TalonFX frontLeftDriveMotor2 = new WPI_TalonFX(Constants.frontLeftDriveID);
+
 
 
   
@@ -124,60 +124,57 @@ public static WPI_TalonFX frontLeftDriveMotor2 = new WPI_TalonFX(Constants.front
 // Create some buttons
 if (Constants.DrivePrefrance == 0){
 //TankDrive
-final JoystickButton rightTrigger = new JoystickButton(rightTankJoystick, 1);        
-rightTrigger.whenHeld(new Dump( m_flyWheel, m_intake ) ,true);
+final JoystickButton rightTrigger = new JoystickButton(rightTankJoystick, Constants.rightTriggerID);        
+rightTrigger.whenHeld(new Dump( m_flyWheel, m_intake, rightTankJoystick ) ,true);
 
-final JoystickButton leftTrigger = new JoystickButton(leftTankJoystick, 1);        
+final JoystickButton leftTrigger = new JoystickButton(leftTankJoystick, Constants.leftTriggerID);        
 leftTrigger.whenHeld(new IntakeIn( m_intake) ,true);
 
-final JoystickButton leftRightStick = new JoystickButton(leftTankJoystick, 4);
-final JoystickButton rightLeftStick = new JoystickButton(rightTankJoystick, 3);
-leftRightStick.whenHeld(new IntakeOut(m_intake), true);
-rightLeftStick.whenHeld(new IntakeOut(m_intake), true);
+final JoystickButton leftStickTopRight = new JoystickButton(leftTankJoystick, Constants.leftStickTopRightID);
+final JoystickButton rightStickTopLeft = new JoystickButton(rightTankJoystick, Constants.rightStickTopLeftID);
+leftStickTopRight.whenHeld(new IntakeOut(m_intake), true);
+rightStickTopLeft.whenHeld(new IntakeOut(m_intake), true);
 
-final JoystickButton rightBigBase = new JoystickButton(rightTankJoystick, 14);
-rightBigBase.whenPressed(new ChangeDirection(m_driveTrain, leftTankJoystick, rightTankJoystick, arcadeJoystick));
-
-final JoystickButton rightSmallBase = new JoystickButton(rightTankJoystick, 16);
-rightSmallBase.whenPressed(new TankDrive(m_driveTrain, leftTankJoystick, rightTankJoystick));
+final JoystickButton rightOutsideBigBase = new JoystickButton(rightTankJoystick, Constants.rightOutsideBigBaseID);
+final JoystickButton rightOutsideSmallBase = new JoystickButton(rightTankJoystick, Constants.rightOutsideSmallBaseID);
+rightOutsideBigBase.whenPressed(new ChangeDirection(m_driveTrain, leftTankJoystick, rightTankJoystick, arcadeJoystick), true);
+rightOutsideSmallBase.whenPressed(new TankDrive(m_driveTrain, leftTankJoystick, rightTankJoystick), true);
    
-final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, 5);
+final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftUpStickID);
 arcadeLeftUpStick.whenHeld(new IntakeRise(m_intake) ,true);
 
-final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, 3);
-arcadeLeftDownStick.whenHeld(new IntakeRise(m_intake) ,true);
-
+final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftDownStickID);
+arcadeLeftDownStick.whenHeld(new IntakeFall(m_intake) ,true);
+  
 final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, 1);        
 arcadeTrigger.whenHeld(new Climb( m_lift ) ,true);
 
 
-
-
 }else{
 //ArcadeDrive
-final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, 1);        
-arcadeTrigger.whenPressed(new Dump( m_flyWheel, m_intake ) ,true);
+final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, Constants.arcadeTriggerID);        
+arcadeTrigger.whenPressed(new Dump( m_flyWheel, m_intake, rightTankJoystick ) ,true);
   
-final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, 2);
+final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftUpStickID);
 arcadeLeftUpStick.whenHeld(new IntakeOut(m_intake) ,true);
 
-final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, 3);
+final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftDownStickID);
 arcadeLeftDownStick.whenHeld(new IntakeIn(m_intake) ,true);
 
-final JoystickButton arcadeBottomLeft = new JoystickButton(arcadeJoystick, 10);
+final JoystickButton arcadeBottomLeft = new JoystickButton(arcadeJoystick, Constants.arcadeBottomLeftID);
 arcadeBottomLeft.whenPressed(new ArcadeDrive(m_driveTrain, arcadeJoystick)); 
 
-final JoystickButton arcadeBottomRight = new JoystickButton(arcadeJoystick, 12);
+final JoystickButton arcadeBottomRight = new JoystickButton(arcadeJoystick, Constants.arcadeBottomRightID);
 arcadeBottomRight.whenPressed(new ChangeDirection(m_driveTrain, leftTankJoystick, rightTankJoystick, arcadeJoystick));
 
-final JoystickButton rightBigBase = new JoystickButton(rightTankJoystick, 14);        
-rightBigBase.whenPressed(new Climb( m_lift ) ,true);
+final JoystickButton rightOutsideBigBase = new JoystickButton(rightTankJoystick, Constants.rightOutsideBigBaseID);        
+rightOutsideBigBase.whenPressed(new Climb( m_lift ) ,true);
 
-final JoystickButton rightTrigger = new JoystickButton(rightTankJoystick, 1);        
+final JoystickButton rightTrigger = new JoystickButton(rightTankJoystick, Constants.rightTriggerID);        
 rightTrigger.whenHeld(new IntakeRise( m_intake ) ,true);
 
-final JoystickButton leftTrigger = new JoystickButton(leftTankJoystick, 1);        
-leftTrigger.whenHeld(new IntakeRise( m_intake) ,true);
+final JoystickButton leftTrigger = new JoystickButton(leftTankJoystick, Constants.leftTriggerID);        
+leftTrigger.whenHeld(new IntakeFall( m_intake) ,true);
 }
 
 }
