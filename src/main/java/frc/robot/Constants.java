@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import java.util.function.DoubleSupplier;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -39,7 +41,22 @@ public static double intakeRaiseSpeed = .4;
 //Dump Constants
 public static double dumpSpeed = .6;
 //Climb Constants
-public static final double liftMotorSpeed = 0.4;
+public static final double liftMotorSpeed = 0.1;
+//PID Constants
+public static final double DrivePIDkd = 0;
+public static final double DrivePIDki = 0;
+public static final double DrivePIDkp = 0.1;
+public static final double DrivePIDToleranceRPS = 0;
+public static final double DrivePIDTargetPosition = 0;
+public static final double DrivePIDTolerance = 0;
+
+//Built In Encoder Constants
+public static final double kWheelRadiusInches = 3;
+public static final double kGearRatio = 5/3;
+public static final double kCountsPerRev = 4096;
+public static final double autoDriveDistance = 200000;
+
+
 //Gyro Constants
 public static double kAngleSetPoint = 0;
 public static double kP = .008; //Proportional Turning constant

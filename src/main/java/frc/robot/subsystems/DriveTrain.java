@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX; 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
 
@@ -50,7 +51,7 @@ private DifferentialDrive differentialDrive;
     public DriveTrain() {
         
         frontLeftDriveMotor = new WPI_TalonFX(Constants.frontLeftDriveID);
- 
+        
     /* Factory default hardware to prevent unexpected behavior */
 frontLeftDriveMotor.configFactoryDefault();
 
@@ -153,5 +154,7 @@ differentialDrive.setMaxOutput(1.0);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public DifferentialDrive getDifferentialDrive() {return differentialDrive;}
+    public MotorController getFrontLeftDriveMotor() {return frontLeftDriveMotor; }
+    
 }
 

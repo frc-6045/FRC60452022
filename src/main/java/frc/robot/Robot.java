@@ -90,7 +90,8 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.schedule();
         }
-
+        //reset Encoder
+        RobotContainer.frontLeftDriveMotor2.setSelectedSensorPosition(0);
         // Re-zero gyro
         //RobotContainer.gyro.reset();
     }
