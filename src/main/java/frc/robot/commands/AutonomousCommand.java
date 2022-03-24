@@ -21,14 +21,18 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 
 public class AutonomousCommand extends SequentialCommandGroup {
-    public static  double timer;
-
     public AutonomousCommand(DriveTrain drive, Intake intake, FlyWheel fly) {
-        super ( new AutoIntake(intake),
-                new AutoDriveDistance(drive)
-               /* new AutoIntake(intake, Constants.intakeSpinSpeed, 8.5, 7.5), 
-                new AutoDrive(drive, Constants.autoDriveSpeed * -1, timer,7, 4.5), 
-                new AutoScore(fly, Constants.dumpSpeed, timer, 4,2)*/);
+        addCommands( 
+        //Ball 1
+                new AutoActuate(intake, Constants.intakeFallSpeed).withTimeout(2),   
+                new AutoIntake(intake, Constants.intakeSpinSpeed, Constants.conveyorSpeed).withTimeout(1),
+        //Ball 2
+                new AutoDriveDistance(drive),
+                new AutoIntake(intake, Constants.intakeSpinSpeed, Constants.conveyorSpeed).withTimeout(1), 
+        //Score
+                new AutoDriveDistance(drive),
+                new AutoScore(fly, Constants.dumpSpeed).withTimeout(3).withTimeout(3));
+
     
     }
 /*

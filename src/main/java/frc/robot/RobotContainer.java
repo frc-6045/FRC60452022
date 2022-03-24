@@ -143,13 +143,18 @@ rightOutsideBigBase.whenPressed(new ChangeDirection(m_driveTrain, leftTankJoysti
 rightOutsideSmallBase.whenPressed(new TankDrive(m_driveTrain, leftTankJoystick, rightTankJoystick), true);
    
 final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftUpStickID);
+final JoystickButton rightStickBottom = new JoystickButton(rightTankJoystick, 2);
 arcadeLeftUpStick.whenHeld(new IntakeRise(m_intake) ,true);
+rightStickBottom.whenHeld(new IntakeFall(m_intake), true);
 
 final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftDownStickID);
+final JoystickButton leftStickBottom = new JoystickButton(leftTankJoystick, 2);
 arcadeLeftDownStick.whenHeld(new IntakeFall(m_intake) ,true);
+leftStickBottom.whenHeld(new IntakeFall(m_intake), true);
   
 final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, 1);        
 arcadeTrigger.whenHeld(new Climb( m_lift ) ,true);
+
 
 
 }else{

@@ -11,13 +11,16 @@ import frc.robot.subsystems.Intake;
 
 public class AutoIntake extends CommandBase {
   private final Intake m_Intake;
-  private double startTime = 1;
-  private double endTime = 2;
+  private double SpinSpeed;
+  private double ConveyorSpeed;
+
   
   /** Creates a new AutoIntake. */
-  public AutoIntake(Intake m_Intake) {
+  public AutoIntake(Intake m_Intake, double SpinSpeed, double ConveyorSpeed) {
     this.m_Intake = m_Intake;
-    
+    this.SpinSpeed = SpinSpeed;
+    this.ConveyorSpeed = ConveyorSpeed;
+  
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_Intake);
   }
@@ -29,22 +32,9 @@ public class AutoIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() { 
-  /* m_Intake.getSpinIntake().set(speed);
-    m_Intake.getConveyIntake().set(speed); */
-    if ( AutonomousCommand.timer >= startTime && AutonomousCommand.timer < endTime ){
-     m_Intake.getSpinIntake().set(Constants.intakeSpinSpeed);
-    m_Intake.getConveyIntake().set(Constants.conveyorSpeed);
-    }
-    else if (0 <= AutonomousCommand.timer && AutonomousCommand.timer < startTime){
-      m_Intake.getSpinIntake().set(0);
-      m_Intake.getConveyIntake().set(0);
-    }
-    else{
-      m_Intake.getSpinIntake().set(0);
-    m_Intake.getConveyIntake().set(0);
-    }
     
-    System.out.println(AutonomousCommand.timer);
+   m_Intake.getSpinIntake().set(SpinSpeed);
+    m_Intake.getConveyIntake().set(ConveyorSpeed);
   
   }
 
@@ -58,15 +48,6 @@ public class AutoIntake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if ( AutonomousCommand.timer >= startTime && AutonomousCommand.timer < endTime ){
-      return false;
+   return false;
     }
-    else if (0 <= AutonomousCommand.timer && AutonomousCommand.timer < startTime){
-      return false;
-    }
-    else {
-      return true;
-    } 
-    //return false;
-  }
 }
