@@ -111,7 +111,7 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.schedule();
         }
-        AutonomousCommand.timer = Timer.getFPGATimestamp();
+
     }
 
     @Override
