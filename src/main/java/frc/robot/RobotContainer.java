@@ -62,7 +62,7 @@ private final IntakeFall m_IntakeFall = new IntakeFall(m_intake);
 private final Dump m_Dump = new Dump(m_flyWheel, m_intake, rightTankJoystick);
 private final Climb m_Climb = new Climb(m_lift);
 // Command Getters
-public ArcadeDrive getArcadeDrive(){ return m_ArcadeDrive;}
+/* public ArcadeDrive getArcadeDrive(){ return m_ArcadeDrive;}
 public TankDrive getTankDrive(){ return m_TankDrive;}
 public ChangeDirection getChangeDirection(){ return m_ChangeDirection;}
 public IntakeIn getIntakeIn(){ return m_IntakeIn;}
@@ -70,10 +70,10 @@ public IntakeOut getIntakeOut(){ return m_IntakeOut;}
 public IntakeRise getIntakeRise(){ return m_IntakeRise;}
 public IntakeFall getIntakeFall(){ return m_IntakeFall;}
 public Dump getDump(){ return m_Dump;}
-public Climb getClimb(){return m_Climb;}
+public Climb getClimb(){return m_Climb;} */
 // Gyro
 public static ADIS16470_IMU gyro = new ADIS16470_IMU();
-public static WPI_TalonFX frontLeftDriveMotor2 = new WPI_TalonFX(Constants.frontLeftDriveID);
+//public static WPI_TalonFX frontLeftDriveMotor2 = new WPI_TalonFX(Constants.frontLeftDriveID);
 
 
 

@@ -28,13 +28,13 @@ public class AutoDrivePID extends PIDCommand {
         // The controller that the command will use
         new PIDController(Constants.DrivePIDkd, Constants.DrivePIDki, Constants.DrivePIDkp),
         // This should return the measurement
-        () ->  (GetPosition.GettingMotorPosition()), 
+        () ->  (m_DriveTrain.get_Right_EncoderCounts()), 
         // This should return the setpoint (can also be a constant)
         Constants.autoDriveDistance,
         // This uses the output
         output -> {
-          m_DriveTrain.getDifferentialDrive().tankDrive(output* 0.01, -(output * 0.01));
-          System.out.println(GetPosition.GettingMotorPosition());
+          m_DriveTrain.driveTank(output* 0.01, -(output * 0.01));
+          System.out.println(m_DriveTrain.get_Right_EncoderCounts());
         },  
         m_DriveTrain);
         

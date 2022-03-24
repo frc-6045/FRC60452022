@@ -95,7 +95,7 @@ public class Robot extends TimedRobot {
         }
 
         //reset Encoder
-        RobotContainer.frontLeftDriveMotor2.setSelectedSensorPosition(0);
+        //RobotContainer.frontLeftDriveMotor2.setSelectedSensorPosition(0);
         // Re-zero gyro
         //RobotContainer.gyro.reset();
 

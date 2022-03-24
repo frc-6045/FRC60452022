@@ -15,7 +15,8 @@ package frc.robot.subsystems;
 
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX; 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
@@ -39,6 +40,7 @@ private MotorControllerGroup leftDriveMotorGroup;
 private MotorControllerGroup rightDriveMotorGroup;
 private DifferentialDrive differentialDrive;
 
+private double EncoderCountsPerRev = 2048;
 
     /**
     *
@@ -59,6 +61,8 @@ frontLeftDriveMotor.configNominalOutputForward(0, 30);
 frontLeftDriveMotor.configNominalOutputReverse(0, 30);
 frontLeftDriveMotor.configPeakOutputForward(1, 30);
 frontLeftDriveMotor.configPeakOutputReverse(-1, 30);
+
+frontLeftDriveMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
         
 
 
@@ -148,8 +152,32 @@ differentialDrive.setMaxOutput(1.0);
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    public DifferentialDrive getDifferentialDrive() {return differentialDrive;}
-    public MotorController getFrontLeftDriveMotor() {return frontLeftDriveMotor; }
+    /* public DifferentialDrive getDifferentialDrive() {
+        return differentialDrive;
+    }
+    public MotorController getFrontLeftDriveMotor() {
+        return frontLeftDriveMotor; 
+    } */
+
+    public void driveTank(double leftSpeed, double rightSpeed){
+        differentialDrive.tankDrive(leftSpeed, rightSpeed);
+    }
+    public void driveArchade(double leftSpeed, double turnSpeed){
+        differentialDrive.arcadeDrive(leftSpeed, turnSpeed);
+    }
+
+
+    public double get_Right_EncoderCounts(){
+        return frontLeftDriveMotor.getSelectedSensorPosition();
+    }
+
+    public double get_Right_Encoder_inch(){
+        return 0.0;
+    }
+
+    public void resetEncoder(){
+        frontLeftDriveMotor.setSelectedSensorPosition(0);
+    }
     
 }
 

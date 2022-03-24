@@ -12,6 +12,8 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
@@ -21,14 +23,24 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 
 public class AutonomousCommand extends SequentialCommandGroup {
-     static  double timer = Timer.getFPGATimestamp();
+     //static  double timer = Timer.getFPGATimestamp();
 
     public AutonomousCommand(DriveTrain drive, Intake intake, FlyWheel fly) {
-        super ( new AutoIntake(intake, Constants.intakeSpinSpeed, 0, 2),
-                new AutoDriveDistance(drive)
+       /*  super ( new AutoIntake(intake, Constants.intakeSpinSpeed, 0, 2),
+                new AutoDriveDistance(drive) */
                /* new AutoIntake(intake, Constants.intakeSpinSpeed, 8.5, 7.5), 
                 new AutoDrive(drive, Constants.autoDriveSpeed * -1, timer,7, 4.5), 
-                new AutoScore(fly, Constants.dumpSpeed, timer, 4,2)*/);
+                new AutoScore(fly, Constants.dumpSpeed, timer, 4,2));*/
+               
+                addCommands(new InstantCommand(() -> drive.resetEncoder()),
+                //Step 2
+                    new ParallelDeadlineGroup(new AutoDriveDistance(.5, Constants.autoDriveDistance ,drive), 
+                                            new AutoIntake(intake, Constants.intakeSpinSpeed, 0, 2)
+                                            ),
+                //step 3
+                    new AutoDriveDistance(-.5, Constants.autoDriveDistance ,drive)
+                            );
+         
     
     }
 /*

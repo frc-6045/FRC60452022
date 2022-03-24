@@ -33,7 +33,7 @@ public class AutoDrive extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_driveTrain.getDifferentialDrive().arcadeDrive(0, 0);
+    m_driveTrain.driveTank(0, 0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -45,10 +45,10 @@ public class AutoDrive extends CommandBase {
   //m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue); 
   System.out.println((RobotContainer.gyro.getAngle())); 
  if ( timer <= startTime && timer > endTime ){
-    m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue);
+    m_driveTrain.driveArchade(speed, turningValue);
   }
   else{
-    m_driveTrain.getDifferentialDrive().arcadeDrive(0,0); 
+    m_driveTrain.driveArchade(0,0); 
   } 
   //System.out.println(timer);
  }
@@ -57,7 +57,7 @@ public class AutoDrive extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_driveTrain.getDifferentialDrive().arcadeDrive(0, 0);
+    m_driveTrain.driveArchade(0, 0);
   }
 
   // Returns true when the command should end.

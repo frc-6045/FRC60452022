@@ -35,7 +35,7 @@ public class AutoIntake extends CommandBase {
     
    m_Intake.getSpinIntake().set(speed);
     m_Intake.getConveyIntake().set(speed);
-    System.out.println(AutonomousCommand.timer);
+    //System.out.println(AutonomousCommand.timer);
   
   }
 
@@ -49,11 +49,8 @@ public class AutoIntake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if ( AutonomousCommand.timer >= startTime && AutonomousCommand.timer < endTime ){
+    
       return false;
-    }
-    else{
-      return true;
-    }
+   
   }
 }

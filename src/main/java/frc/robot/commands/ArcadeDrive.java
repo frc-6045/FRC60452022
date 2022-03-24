@@ -42,7 +42,7 @@ public class ArcadeDrive extends CommandBase {
     @Override
     public void execute() {   
         driveScale = (1+ singleJoy.getRawAxis(3)) * .5;    
-        m_driveTrain.getDifferentialDrive().arcadeDrive(singleJoy.getX() * Constants.DriveSpeed * driveScale, singleJoy.getY() * -Constants.DriveSpeed * driveScale);
+        m_driveTrain.driveArchade(singleJoy.getX() * Constants.DriveSpeed * driveScale, singleJoy.getY() * -Constants.DriveSpeed * driveScale);
       /*  double turningValue = (Constants.kAngleSetPoint -RobotContainer.gyro.getAngle()) * Constants.kP;
         turningValue = Math.copySign(turningValue, singleJoy.getY());
        m_driveTrain.getDifferentialDrive().arcadeDrive(singleJoy.getX() * .6, turningValue);
@@ -52,7 +52,7 @@ public class ArcadeDrive extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        m_driveTrain.getDifferentialDrive().arcadeDrive(0, 0);
+        m_driveTrain.driveArchade(0, 0);
     }
 
     // Returns true when the command should end.

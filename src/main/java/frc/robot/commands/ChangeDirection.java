@@ -33,10 +33,10 @@ public class ChangeDirection extends CommandBase {
   @Override
   public void execute() {
     if (Constants.DrivePrefrance == 0){
-      m_driveTrain.getDifferentialDrive().tankDrive(leftJoy.getY() * Constants.DriveSpeed, rightJoy.getY() * -Constants.DriveSpeed);
+      m_driveTrain.driveTank(leftJoy.getY() * Constants.DriveSpeed, rightJoy.getY() * -Constants.DriveSpeed);
     }
     else{
-      m_driveTrain.getDifferentialDrive().arcadeDrive(arcJoy.getX() * -Constants.DriveSpeed, arcJoy.getY() * Constants.DriveSpeed);
+      //m_driveTrain.driveTank(arcJoy.getX() * -Constants.DriveSpeed, arcJoy.getY() * Constants.DriveSpeed);
     }
   }
 
