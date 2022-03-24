@@ -10,16 +10,10 @@ import frc.robot.subsystems.FlyWheel;
 public class AutoScore extends CommandBase {
   private final FlyWheel m_FlyWheel;
   private double speed;
-  private double timer;
-  private double startTime;
-  private double endTime;
   /** Creates a new AutoScore. */
-  public AutoScore(FlyWheel subsystem, double speed, double timer, double startTime, double endTime) {
+  public AutoScore(FlyWheel subsystem, double speed) {
     m_FlyWheel = subsystem;
     this.speed = speed;
-    this.startTime = startTime;
-    this.endTime = endTime;
-    this.timer = timer;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_FlyWheel);
   }
@@ -48,11 +42,6 @@ public class AutoScore extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if ( timer <= startTime && timer > endTime ){
-      return false;
-    }
-    else{
-      return true;
-    }
+    return false;
   }
 }

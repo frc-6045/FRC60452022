@@ -11,18 +11,13 @@ public class AutoActuate extends CommandBase {
   /** Creates a new AutoActuate. */
   private Intake m_intake;
   private double speed;
-  private double timer;
-  private double startTime;
-  private double endTime;
+ 
 
-  public AutoActuate(Intake subsystem, double speed, double timer, double startTime, double endTime) {
+  public AutoActuate(Intake subsystem, double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_intake = subsystem;
     addRequirements(m_intake);
     this.speed = speed;
-    this.timer = timer;
-    this.startTime = startTime;
-    this.endTime = endTime;
   }
 
   // Called when the command is initially scheduled.
@@ -46,11 +41,6 @@ public class AutoActuate extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if ( timer <= startTime && timer > endTime ){
-      return false;
-    }
-    else{
-      return true;
-    }
+   return false;
   }
 }
