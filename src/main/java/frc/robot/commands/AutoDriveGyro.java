@@ -14,19 +14,13 @@ public class AutoDriveGyro extends CommandBase {
   /** Creates a new AutoDrive. */
   private final DriveTrain m_driveTrain;
   private double speed;
-  private double timer;
-  private double endTime;
-  private double startTime;
 
   
-  public AutoDriveGyro(DriveTrain subsystem, double speed, double timer, double startTime, double endTime) {
+  public AutoDriveGyro(DriveTrain subsystem, double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_driveTrain = subsystem;
     addRequirements(m_driveTrain);
     this.speed = speed;
-    this.startTime = startTime;
-    this.endTime = endTime;
-    this.timer= timer;
   
   }
 
