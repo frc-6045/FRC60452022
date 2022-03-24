@@ -32,7 +32,7 @@ public class AutonomousCommand extends SequentialCommandGroup {
                 new AutoDrive(drive, Constants.autoDriveSpeed * -1, timer,7, 4.5), 
                 new AutoScore(fly, Constants.dumpSpeed, timer, 4,2));*/
                
-                addCommands(new InstantCommand(() -> drive.resetEncoder()),
+                addCommands(//new InstantCommand(() -> drive.resetEncoder()),
                 //Step 2
                     new ParallelDeadlineGroup(new AutoDriveDistance(.5, Constants.autoDriveDistance ,drive), 
                                             new AutoIntake(intake, Constants.intakeSpinSpeed, 0, 2)
