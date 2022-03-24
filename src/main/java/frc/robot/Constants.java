@@ -33,7 +33,7 @@ public static int DrivePrefrance = 0;
 public static double DriveSpeed = .75;
 public static int driveDirection = 1;
 // Autonomous Constants
-public static double autoDriveSpeed = .4;
+public static double autoDriveSpeed = .45;
 public static double autoDriveTime = 10;
 public static double autoScoreTime = 8;
 public static double autoIntakeTime = 6;
