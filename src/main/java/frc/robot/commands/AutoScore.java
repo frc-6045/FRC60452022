@@ -6,14 +6,19 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.FlyWheel;
+import frc.robot.subsystems.Intake;
 
 public class AutoScore extends CommandBase {
   private final FlyWheel m_FlyWheel;
-  private double speed;
+  private final Intake m_Conveyor;
+  private double DumpSpeed;
+  private double ConveyorSpeed;
   /** Creates a new AutoScore. */
-  public AutoScore(FlyWheel subsystem, double speed) {
+  public AutoScore(FlyWheel subsystem, Intake m_Conveyor, double DumpSpeed, double ConveyorSpeed ) {
     m_FlyWheel = subsystem;
-    this.speed = speed;
+    this.m_Conveyor = m_Conveyor;
+    this.DumpSpeed = DumpSpeed;
+    this.ConveyorSpeed = ConveyorSpeed;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_FlyWheel);
   }
@@ -28,7 +33,9 @@ public class AutoScore extends CommandBase {
   @Override
   public void execute() {
   
-  m_FlyWheel.getDumpMotor().set(speed);
+  m_FlyWheel.getDumpMotor().set(DumpSpeed);
+  m_Conveyor.getConveyIntake().set(ConveyorSpeed);
+
 
 
   }
@@ -37,6 +44,7 @@ public class AutoScore extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_FlyWheel.getDumpMotor().set(0);
+    m_Conveyor.getConveyIntake().set(0);
   }
 
   // Returns true when the command should end.

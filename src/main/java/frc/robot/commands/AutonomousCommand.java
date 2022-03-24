@@ -25,14 +25,14 @@ public class AutonomousCommand extends SequentialCommandGroup {
     public AutonomousCommand(DriveTrain drive, Intake intake, FlyWheel fly) {
         addCommands( 
         //Ball 1
-                new AutoActuate(intake, Constants.intakeFallSpeed).withTimeout(2),   
-                new AutoIntake(intake, Constants.intakeSpinSpeed, Constants.conveyorSpeed).withTimeout(1),
+              //  new AutoActuate(intake, Constants.intakeFallSpeed).withTimeout(2),   
+                new AutoIntake(intake, Constants.intakeSpinSpeed, Constants.conveyorSpeed).withTimeout(2),
         //Ball 2
                 new AutoDriveDistance(drive),
                 new AutoIntake(intake, Constants.intakeSpinSpeed, Constants.conveyorSpeed).withTimeout(1), 
         //Score
                 new AutoDriveDistance(drive),
-                new AutoScore(fly, Constants.dumpSpeed).withTimeout(3));
+                new AutoScore(fly, intake, Constants.dumpSpeed, Constants.conveyorSpeed).withTimeout(3));
     
     }
 /*
