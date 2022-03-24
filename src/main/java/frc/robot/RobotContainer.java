@@ -52,6 +52,12 @@ public final DriveTrain m_driveTrain = new DriveTrain();
 private final Joystick arcadeJoystick = new Joystick(2);
 private final Joystick rightTankJoystick = new Joystick(1);
 private final Joystick leftTankJoystick = new Joystick(0);
+// Command and Command Getters
+private final ArcadeDrive m_ArcadeDrive = new ArcadeDrive(m_driveTrain, arcadeJoystick);
+public ArcadeDrive getArcadeDrive(){ return m_ArcadeDrive;}
+
+private final TankDrive m_TankDrive = new TankDrive(m_driveTrain, leftTankJoystick, rightTankJoystick);
+public TankDrive getTankDrive(){ return m_TankDrive;}
 
 // Gyro
 public static ADIS16470_IMU gyro = new ADIS16470_IMU();
