@@ -10,7 +10,7 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrain;
 
 
-public class AutoDrive extends CommandBase {
+public class AutoDriveGyro extends CommandBase {
   /** Creates a new AutoDrive. */
   private final DriveTrain m_driveTrain;
   private double speed;
@@ -19,7 +19,7 @@ public class AutoDrive extends CommandBase {
   private double startTime;
 
   
-  public AutoDrive(DriveTrain subsystem, double speed, double timer, double startTime, double endTime) {
+  public AutoDriveGyro(DriveTrain subsystem, double speed, double timer, double startTime, double endTime) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_driveTrain = subsystem;
     addRequirements(m_driveTrain);
@@ -42,15 +42,9 @@ public class AutoDrive extends CommandBase {
   //m_driveTrain.getDifferentialDrive().arcadeDrive(speed, 0);  
   double turningValue = (Constants.kAngleSetPoint - RobotContainer.gyro.getAngle()) * Constants.kP;
   //turningValue = Math.copySign(turningValue, speed);
-  //m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue); 
+  m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue); 
   System.out.println((RobotContainer.gyro.getAngle())); 
- if ( timer <= startTime && timer > endTime ){
-    m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue);
-  }
-  else{
-    m_driveTrain.getDifferentialDrive().arcadeDrive(0,0); 
-  } 
-  //System.out.println(timer);
+
  }
    
 
@@ -63,12 +57,6 @@ public class AutoDrive extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-  /*  if ( timer <= startTime && timer > endTime ){
-      return false;
-    }
-    else{
-      return true;
-    } */
     return false;
   }
 }

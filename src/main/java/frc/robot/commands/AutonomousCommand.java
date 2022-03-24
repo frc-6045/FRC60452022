@@ -32,7 +32,6 @@ public class AutonomousCommand extends SequentialCommandGroup {
         //Score
                 new AutoDriveDistance(drive),
                 new AutoScore(fly, Constants.dumpSpeed).withTimeout(3));
-
     
     }
 /*
