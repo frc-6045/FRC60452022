@@ -28,13 +28,13 @@ public class AutoDrivePID extends PIDCommand {
         // The controller that the command will use
         new PIDController(Constants.DrivePIDkd, Constants.DrivePIDki, Constants.DrivePIDkp),
         // This should return the measurement
-        () ->  (GetPosition.GettingMotorPosition()), 
+        () ->  m_DriveTrain.get_Right_EncoderCounts(), 
         // This should return the setpoint (can also be a constant)
         Constants.autoDriveDistance,
         // This uses the output
         output -> {
-          m_DriveTrain.getDifferentialDrive().tankDrive(output* 0.4, -(output * 0.4));
-          System.out.println(GetPosition.GettingMotorPosition());
+          m_DriveTrain.getDifferentialDrive().tankDrive(0.15, -(0.15));
+          System.out.println(output);
         },  
         m_DriveTrain);
         
@@ -46,21 +46,10 @@ public class AutoDrivePID extends PIDCommand {
     // Use addRequirements() here to declare subsystem dependencies.
     // Configure additional PID options by calling `getController` here.
   }
-  
-  
-  
-  private double nativeUnitsToDistanceMeters(double sensorCounts){
-    double motorRotations = (double)sensorCounts / Constants.kCountsPerRev;
-    double wheelRotations = motorRotations / Constants.kGearRatio;
-    double positionMeters = wheelRotations * (2 * Math.PI * Units.inchesToMeters(Constants.kWheelRadiusInches));
-    return positionMeters;
-  }
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    // if (GetPosition.GettingMotorPosition() == Constants.autoDriveDistance ) {
-    //   return true;
-    // } else return false;
+  
     return getController().atSetpoint();
   }
 }
