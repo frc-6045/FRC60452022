@@ -52,26 +52,7 @@ public final DriveTrain m_driveTrain = new DriveTrain();
 private final Joystick arcadeJoystick = new Joystick(2);
 private final Joystick rightTankJoystick = new Joystick(1);
 private final Joystick leftTankJoystick = new Joystick(0);
-// Commands
-private final ArcadeDrive m_ArcadeDrive = new ArcadeDrive(m_driveTrain, arcadeJoystick);
-private final TankDrive m_TankDrive = new TankDrive(m_driveTrain, leftTankJoystick, rightTankJoystick);
-private final ChangeDirection m_ChangeDirection = new ChangeDirection(m_driveTrain, leftTankJoystick, rightTankJoystick, arcadeJoystick);
-private final IntakeIn m_IntakeIn = new IntakeIn(m_intake);
-private final IntakeOut m_IntakeOut = new IntakeOut(m_intake);
-private final IntakeRise m_IntakeRise = new IntakeRise(m_intake);
-private final IntakeFall m_IntakeFall = new IntakeFall(m_intake);
-private final Dump m_Dump = new Dump(m_flyWheel, m_intake, rightTankJoystick);
-private final Climb m_Climb = new Climb(m_lift);
-// Command Getters
-public ArcadeDrive getArcadeDrive(){ return m_ArcadeDrive;}
-public TankDrive getTankDrive(){ return m_TankDrive;}
-public ChangeDirection getChangeDirection(){ return m_ChangeDirection;}
-public IntakeIn getIntakeIn(){ return m_IntakeIn;}
-public IntakeOut getIntakeOut(){ return m_IntakeOut;}
-public IntakeRise getIntakeRise(){ return m_IntakeRise;}
-public IntakeFall getIntakeFall(){ return m_IntakeFall;}
-public Dump getDump(){ return m_Dump;}
-public Climb getClimb(){return m_Climb;}
+
 // Gyro
 public static ADIS16470_IMU gyro = new ADIS16470_IMU();
 public static WPI_TalonFX frontLeftDriveMotor2 = new WPI_TalonFX(Constants.frontLeftDriveID);
@@ -139,8 +120,8 @@ rightStickTopLeft.whenHeld(new IntakeOut(m_intake), true);
 
 final JoystickButton rightOutsideBigBase = new JoystickButton(rightTankJoystick, Constants.rightOutsideBigBaseID);
 final JoystickButton rightOutsideSmallBase = new JoystickButton(rightTankJoystick, Constants.rightOutsideSmallBaseID);
-rightOutsideBigBase.whenPressed(new ChangeDirection(m_driveTrain, leftTankJoystick, rightTankJoystick, arcadeJoystick), true);
-rightOutsideSmallBase.whenPressed(new TankDrive(m_driveTrain, leftTankJoystick, rightTankJoystick), true);
+rightOutsideBigBase.whenPressed(new ChangeDirection(), true);
+rightOutsideSmallBase.whenPressed(new ChangeDirection(), true);
    
 final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftUpStickID);
 final JoystickButton rightStickBottom = new JoystickButton(rightTankJoystick, 2);
@@ -169,10 +150,10 @@ final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, Co
 arcadeLeftDownStick.whenHeld(new IntakeIn(m_intake) ,true);
 
 final JoystickButton arcadeBottomLeft = new JoystickButton(arcadeJoystick, Constants.arcadeBottomLeftID);
-arcadeBottomLeft.whenPressed(new ArcadeDrive(m_driveTrain, arcadeJoystick)); 
+arcadeBottomLeft.whenPressed(new ChangeDirection(), true); 
 
 final JoystickButton arcadeBottomRight = new JoystickButton(arcadeJoystick, Constants.arcadeBottomRightID);
-arcadeBottomRight.whenPressed(new ChangeDirection(m_driveTrain, leftTankJoystick, rightTankJoystick, arcadeJoystick));
+arcadeBottomRight.whenPressed(new ChangeDirection(), true);
 
 final JoystickButton rightOutsideBigBase = new JoystickButton(rightTankJoystick, Constants.rightOutsideBigBaseID);        
 rightOutsideBigBase.whenPressed(new Climb( m_lift ) ,true);

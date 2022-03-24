@@ -31,6 +31,7 @@ public static int liftID = 5;
 //Drive Constants
 public static int DrivePrefrance = 0;
 public static double DriveSpeed = .6;
+public static int driveDirection = 1;
 // Autonomous Constants
 public static double autoDriveSpeed = .4;
 public static double autoDriveTime = 10;
