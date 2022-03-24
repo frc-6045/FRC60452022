@@ -42,7 +42,7 @@ public class AutoDrivePID extends PIDCommand {
         getController().setTolerance(Constants.DrivePIDTolerance);
 
         
-        
+        addRequirements(m_DriveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
     // Configure additional PID options by calling `getController` here.
   }

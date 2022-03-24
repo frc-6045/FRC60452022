@@ -87,17 +87,21 @@ public static ADIS16470_IMU gyro = new ADIS16470_IMU();
   private RobotContainer() {
   
     // Smartdashboard Subsystems
-      
+
+      SmartDashboard.putData(m_driveTrain);
+      SmartDashboard.putData(m_intake);
+      SmartDashboard.putData(m_flyWheel);
+      SmartDashboard.putData(m_lift);
 
     // SmartDashboard Buttons
-   /*
+   /* 
    SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
     SmartDashboard.putData("TankDrive", new TankDrive( m_driveTrain ));
     SmartDashboard.putData("Dump", new Dump( m_flyWheel ));
     SmartDashboard.putData("Climb", new Climb( m_lift ));
     SmartDashboard.putData("IntakeRise", new IntakeRise( m_intake ));
     SmartDashboard.putData("IntakeIn", new IntakeIn( m_intake ));
-*/
+ */
    
     // Configure the button bindings
     configureButtonBindings();
