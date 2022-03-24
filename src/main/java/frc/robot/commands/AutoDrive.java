@@ -33,6 +33,7 @@ public class AutoDrive extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    //Reset Gyro
     m_driveTrain.driveTank(0, 0);
   }
 

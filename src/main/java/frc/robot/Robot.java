@@ -88,7 +88,7 @@ public class Robot extends TimedRobot {
         m_autonomousCommand = m_robotContainer.getAutonomousCommand();
      
         // Re-zero gyro
-        RobotContainer.gyro.reset();
+        //RobotContainer.gyro.reset();
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
             m_autonomousCommand.schedule();
