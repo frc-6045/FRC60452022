@@ -43,6 +43,7 @@ public class TankDrive extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        
     
     }
 
@@ -53,7 +54,8 @@ public class TankDrive extends CommandBase {
         //m_driveTrain.getDifferentialDrive().tankDrive(leftJoystick.getY() * -Constants.DriveSpeed * driveScale, rightJoystick.getY() * Constants.DriveSpeed * driveScale);
      //double turningValue = (Constants.kAngleSetPoint -RobotContainer.gyro.getAngle()) * Constants.kP;
        // turningValue = Math.copySign(turningValue, leftJoystick.getY(), rightJoystick.getY());
-       m_driveTrain.getDifferentialDrive().tankDrive(leftJoystick.getY() * -Constants.DriveSpeed , rightJoystick.getY() * Constants.DriveSpeed);
+       m_driveTrain.getDifferentialDrive().tankDrive(leftJoystick.getY() * -Constants.DriveSpeed * Constants.driveDirection , rightJoystick.getY() * Constants.DriveSpeed * Constants.driveDirection);
+    System.out.println(RobotContainer.frontLeftDriveMotor2.getSelectedSensorPosition());
     }
 
   
