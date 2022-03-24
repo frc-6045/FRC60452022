@@ -28,6 +28,7 @@ public static int intakeRaiseID = 0;
 public static int conveyorID = 14;
 public static int dumpID = 13;
 public static int liftID = 5;
+public static final int arcadeTopBase = 0;
 //Drive Constants
 public static int DrivePrefrance = 0;
 public static double DriveSpeed = .6;
@@ -36,6 +37,7 @@ public static double autoDriveSpeed = .4;
 public static double autoDriveTime = 10;
 public static double autoScoreTime = 8;
 public static double autoIntakeTime = 6;
+public static double autoDriveDistance = 40;
 //Intake Constants
 public static double intakeSpinSpeed = .4;
 public static double conveyorSpeed= .23;
@@ -45,19 +47,22 @@ public static double intakeFallSpeed = .1;
 public static double dumpSpeed = .35;
 //Climb Constants
 public static final double liftMotorSpeed = 0.6;
+public static double climbDirection = 1;
+
 //PID Constants
 public static final double DrivePIDkd = 0;
 public static final double DrivePIDki = 0;
-public static final double DrivePIDkp = 0.0000001;
+public static final double DrivePIDkp = 0.1;
 public static final double DrivePIDToleranceRPS = 0;
 public static final double DrivePIDTargetPosition = 0;
 public static final double DrivePIDTolerance = 0;
 
 //Built In Encoder Constants
 public static final double kWheelRadiusInches = 3;
-public static final double kGearRatio = 5/3;
+public static final double kGearRatio = 5.95/1;
 public static final double kCountsPerRev = 4096;
-public static final double autoDriveDistance = 200000;
+public static final double autoDriveDistanceInches = 200000;
+
 
 
 //Gyro Constants
