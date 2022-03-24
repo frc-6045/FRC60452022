@@ -38,7 +38,7 @@ public class AutonomousCommand extends SequentialCommandGroup {
                                             new AutoIntake(intake, Constants.intakeSpinSpeed, 0, 2)
                                             ),
                 //step 3
-                    new AutoDriveDistance(-.5, Constants.autoDriveDistance ,drive)
+                    new AutoDriveDistance(-.5, Constants.autoDriveDistance ,drive).withTimeout(4)
                             );
          
     
