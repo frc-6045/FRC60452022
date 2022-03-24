@@ -167,6 +167,9 @@ rightTrigger.whenHeld(new IntakeRise( m_intake ) ,true);
 
 final JoystickButton leftTrigger = new JoystickButton(leftTankJoystick, Constants.leftTriggerID);        
 leftTrigger.whenHeld(new IntakeFall( m_intake) ,true);
+
+final JoystickButton arcadeTopBase = new JoystickButton(arcadeJoystick, Constants.arcadeTopBase);        
+arcadeTopBase.whenPressed(new ReverseClimbDirection() ,true);
 }
 
 }

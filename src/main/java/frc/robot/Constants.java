@@ -46,6 +46,7 @@ public static double intakeFallSpeed = .1;
 public static double dumpSpeed = .35;
 //Climb Constants
 public static final double liftMotorSpeed = -0.6;
+public static double climbDirection = 1;
 //PID Constants
 public static final double DrivePIDkd = 0;
 public static final double DrivePIDki = 0;
@@ -72,6 +73,7 @@ public static int leftStickTopRightID = 4;
 public static int rightStickTopLeftID = 3;
 public static int rightOutsideBigBaseID = 14;
 public static int rightOutsideSmallBaseID = 16;
+public static final int arcadeTopBase = 0;
     //Arcade Joystick
 public static int arcadeTriggerID = 1;
 public static int arcadeLeftUpStickID = 5;
