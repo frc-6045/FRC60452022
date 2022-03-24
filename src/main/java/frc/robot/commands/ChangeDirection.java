@@ -10,34 +10,25 @@ import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
 
 public class ChangeDirection extends CommandBase {
-  private final DriveTrain m_driveTrain;
-  private Joystick leftJoy;
-  private Joystick rightJoy;
-  private Joystick arcJoy;
+
   
   /** Creates a new ChangeDirection. */
-  public ChangeDirection(DriveTrain subsystem, Joystick leftJoy, Joystick rightJoy, Joystick arcJoy) {
-   m_driveTrain = subsystem;
-   this.leftJoy = leftJoy;
-   this.rightJoy = rightJoy;
-   this.arcJoy = arcJoy;
+  public ChangeDirection() {
+  
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_driveTrain);
+    
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    Constants.driveDirection = Constants.driveDirection * -1;
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Constants.DrivePrefrance == 0){
-      m_driveTrain.getDifferentialDrive().tankDrive(leftJoy.getY() * Constants.DriveSpeed, rightJoy.getY() * -Constants.DriveSpeed);
-    }
-    else{
-      m_driveTrain.getDifferentialDrive().arcadeDrive(arcJoy.getX() * -Constants.DriveSpeed, arcJoy.getY() * Constants.DriveSpeed);
-    }
+   
   }
 
   // Called once the command ends or is interrupted.
@@ -47,6 +38,6 @@ public class ChangeDirection extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }
