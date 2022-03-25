@@ -17,6 +17,8 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX; 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -149,7 +151,23 @@ differentialDrive.setMaxOutput(1.0);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public DifferentialDrive getDifferentialDrive() {return differentialDrive;}
-    public MotorController getFrontLeftDriveMotor() {return frontLeftDriveMotor; }
+   
+    public double get_Right_EncoderCounts(){
+        return frontLeftDriveMotor.getSelectedSensorPosition();
+    }
+
+    public double get_Right_Encoder_inch(double sensorCounts){
+        double motorRotations = (double)sensorCounts / Constants.kCountsPerRev;
+        double wheelRotations = motorRotations / Constants.kGearRatio;
+        double positionInches = wheelRotations * (2 * Math.PI * Constants.kWheelRadiusInches);
+        return positionInches;
+        
+        
+    }
+
+    public void resetEncoder(){
+        frontLeftDriveMotor.setSelectedSensorPosition(0);
+    }
     
 }
 

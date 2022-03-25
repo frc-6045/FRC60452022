@@ -114,6 +114,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
+        RobotContainer.frontLeftDriveMotor2.setSelectedSensorPosition(0);
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
@@ -132,11 +133,11 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
    //Schedule Drive commands
-    /*    if (Constants.DrivePrefrance == 0){
+       if (Constants.DrivePrefrance == 0){
         m_robotContainer.getTankDrive().schedule();
     }else{
         m_robotContainer.getArcadeDrive().schedule();
-    } */
+    } 
        
     }
 

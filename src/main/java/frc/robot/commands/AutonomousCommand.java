@@ -32,7 +32,7 @@ public class AutonomousCommand extends SequentialCommandGroup {
                 new AutoIntake(intake, Constants.intakeSpinSpeed, Constants.conveyorSpeed).withTimeout(1), 
         //Score
                 new AutoDriveDistance(drive),
-                new AutoScore(fly, Constants.dumpSpeed).withTimeout(3).withTimeout(3));
+                new AutoScore(fly, Constants.dumpSpeed).withTimeout(3));
     
     }
 /*
