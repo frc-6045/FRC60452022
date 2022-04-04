@@ -161,13 +161,10 @@ arcadeLeftUpStick.whenHeld(new IntakeOut(m_intake) ,true);
 final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftDownStickID);
 arcadeLeftDownStick.whenHeld(new IntakeIn(m_intake) ,true);
 
-<<<<<<< HEAD
-=======
 final JoystickButton arcadeBottomLeft = new JoystickButton(arcadeJoystick, Constants.arcadeBottomRightID);
 arcadeBottomLeft.whenPressed(new ChangeDirection(), true); 
 
 
->>>>>>> 5f0456748ab6137b2fe1b39d8ee2dcedb89787aa
 final JoystickButton rightOutsideBigBase = new JoystickButton(rightTankJoystick, Constants.rightOutsideBigBaseID);        
 rightOutsideBigBase.whenPressed(new Climb( m_lift ) ,true);
 
