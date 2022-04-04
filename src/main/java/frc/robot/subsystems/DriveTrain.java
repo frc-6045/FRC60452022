@@ -158,9 +158,9 @@ differentialDrive.setMaxOutput(1.0);
 
     public void my_TankDrive(double leftSpeed, double rightSpeed) {
         if (invertDrive) {
-            differentialDrive.tankDrive(-rightSpeed * Constants.DriveSpeed, -leftSpeed * Constants.DriveSpeed);
+            differentialDrive.tankDrive(-leftSpeed * Constants.DriveSpeed, -rightSpeed * Constants.DriveSpeed);
         } else {
-            differentialDrive.tankDrive(leftSpeed * Constants.DriveSpeed, rightSpeed * Constants.DriveSpeed);
+            differentialDrive.tankDrive(rightSpeed * Constants.DriveSpeed, leftSpeed * Constants.DriveSpeed);
         }
         
     }
