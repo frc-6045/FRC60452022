@@ -44,7 +44,16 @@ public class AutoDriveGyro extends CommandBase {
   //turningValue = Math.copySign(turningValue, speed);
   m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue); 
   System.out.println((RobotContainer.gyro.getAngle())); 
+/*
+if(RobotContainer.gyro.getAngle() =< .5 && RobotContainer.gyro.getAngle() >= -.5){
+  m_driveTrain.getDifferentialDrive().arcadeDrive(speed, 0)
+}
+else{
+  m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue); 
+}
 
+}
+*/
  }
    
 
