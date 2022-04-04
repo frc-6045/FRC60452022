@@ -22,18 +22,18 @@ public class AutoDrivePID extends PIDCommand {
   /** Creates a new AutoDrivePID. */
   
   
-  public AutoDrivePID(DriveTrain m_DriveTrain) {
+  public AutoDrivePID(DriveTrain m_DriveTrain, double setPoint) {
     
     super(
         // The controller that the command will use
         new PIDController(Constants.DrivePIDkd, Constants.DrivePIDki, Constants.DrivePIDkp),
         // This should return the measurement
-        () ->  m_DriveTrain.get_Right_EncoderCounts(), 
+        () ->  m_DriveTrain.get_Right_Encoder_inch(), 
         // This should return the setpoint (can also be a constant)
-        Constants.autoDriveDistance,
+        setPoint,
         // This uses the output
         output -> {
-          m_DriveTrain.getDifferentialDrive().tankDrive(0.15, -(0.15));
+          m_DriveTrain.getDifferentialDrive().tankDrive(0.30, -(0.30));
           System.out.println(output);
         },  
         m_DriveTrain);

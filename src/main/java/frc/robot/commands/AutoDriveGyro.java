@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -13,14 +14,18 @@ import frc.robot.subsystems.DriveTrain;
 public class AutoDriveGyro extends CommandBase {
   /** Creates a new AutoDrive. */
   private final DriveTrain m_driveTrain;
-  private double speed;
-
+  private double m_speed;
+  private double m_heading;
+private final PIDController m_PIDHeading;
   
-  public AutoDriveGyro(DriveTrain subsystem, double speed) {
+  public AutoDriveGyro(DriveTrain subsystem, double speed, double heading) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_PIDHeading = new PIDController(0.001, 0, 0);
+    m_PIDHeading.setTolerance(2);
     m_driveTrain = subsystem;
     addRequirements(m_driveTrain);
-    this.speed = speed;
+    m_speed = speed;
+    m_heading = heading;
   
   }
 
@@ -28,16 +33,21 @@ public class AutoDriveGyro extends CommandBase {
   @Override
   public void initialize() {
     m_driveTrain.getDifferentialDrive().arcadeDrive(0, 0);
+    m_PIDHeading.setSetpoint(m_heading);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
   //m_driveTrain.getDifferentialDrive().arcadeDrive(speed, 0);  
-  double turningValue = (Constants.kAngleSetPoint - RobotContainer.gyro.getAngle()) * Constants.kP;
+
+  double turningValue = m_driveTrain.getHeading();
+  double PIDOut = m_PIDHeading.calculate(turningValue);
   //turningValue = Math.copySign(turningValue, speed);
-  m_driveTrain.getDifferentialDrive().arcadeDrive(speed, turningValue); 
-  System.out.println((RobotContainer.gyro.getAngle())); 
+  // m_driveTrain.getDifferentialDrive().arcadeDrive(m_speed, PIDOut); 
+  System.out.println("PIDOut:  " + PIDOut); 
+  
 
  }
    
@@ -51,6 +61,6 @@ public class AutoDriveGyro extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return m_PIDHeading.atSetpoint();
   }
 }

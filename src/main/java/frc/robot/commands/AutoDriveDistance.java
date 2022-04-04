@@ -15,9 +15,13 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 
 public class AutoDriveDistance extends CommandBase {
   private final DriveTrain m_driveTrain;
+  private double m_speed;
+  private double m_setpoint;
   /** Creates a new AutoDriveDistance. */
-  public AutoDriveDistance(DriveTrain m_driveTrain) {
+  public AutoDriveDistance(DriveTrain m_driveTrain, double speed, double setpoint) {
     this.m_driveTrain = m_driveTrain;
+    m_speed = speed;
+    m_setpoint = setpoint;
     addRequirements(m_driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -27,26 +31,29 @@ public class AutoDriveDistance extends CommandBase {
   public void initialize() {
     
     
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    while (RobotContainer.frontLeftDriveMotor2.getSelectedSensorPosition() < Constants.autoDriveDistance) {
-      m_driveTrain.getDifferentialDrive().tankDrive(Constants.autoDriveSpeed, -Constants.autoDriveSpeed);
-      System.out.println(RobotContainer.frontLeftDriveMotor2.getSelectedSensorPosition());
-  }
+    
+      m_driveTrain.my_TankDrive(m_speed, -m_speed);
+      System.out.println(m_driveTrain.get_Right_Encoder_inch());
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_driveTrain.getDifferentialDrive().tankDrive(0, 0);
+    m_driveTrain.my_TankDrive(0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    // return false;
+
+    return Math.abs(m_driveTrain.get_Right_Encoder_inch()) >= m_setpoint;
   }
 }

@@ -38,7 +38,7 @@ public static double autoDriveSpeed = .4;
 public static double autoDriveTime = 10;
 public static double autoScoreTime = 8;
 public static double autoIntakeTime = 6;
-public static double autoDriveDistance = 40;
+public static double autoDriveDistance = 30;
 //Intake Constants
 public static double intakeSpinSpeed = .4;
 public static double conveyorSpeed= .23;
@@ -55,14 +55,15 @@ public static final double DrivePIDkd = 0;
 public static final double DrivePIDki = 0;
 public static final double DrivePIDkp = 0.1;
 public static final double DrivePIDToleranceRPS = 0;
-public static final double DrivePIDTargetPosition = 0;
-public static final double DrivePIDTolerance = 0;
+public static final double DrivePIDTargetPosition = 30;
+public static final double DrivePIDTolerance = 2;
 
 //Built In Encoder Constants
 public static final double kWheelRadiusInches = 3;
 public static final double kGearRatio = 5.95/1;
 public static final double kCountsPerRev = 4096;
 public static final double autoDriveDistanceInches = 200000;
+
 
 
 
@@ -81,7 +82,7 @@ public static int rightOutsideSmallBaseID = 16;
 public static int arcadeTriggerID = 1;
 public static int arcadeLeftUpStickID = 5;
 public static int arcadeLeftDownStickID = 3;
-public static int arcadeBottomLeftID = 10;
+public static int arcadeBottomMiddleID = 10;
 public static int arcadeBottomRightID = 12;
 
 }
