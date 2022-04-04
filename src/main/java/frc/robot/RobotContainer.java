@@ -132,7 +132,7 @@ rightOutsideSmallBase.whenPressed(new ChangeDirection(), true); */
 final JoystickButton arcadeBottomRight = new JoystickButton(arcadeJoystick, Constants.arcadeBottomRightID);
 final JoystickButton arcadeBottomMiddle = new JoystickButton(arcadeJoystick, Constants.arcadeBottomMiddleID);
 arcadeBottomRight.whenPressed(new DriveTrainInvert(m_driveTrain, true));
-arcadeBottomRight.whenPressed(new DriveTrainInvert(m_driveTrain, false));
+arcadeBottomMiddle.whenPressed(new DriveTrainInvert(m_driveTrain, false));
    
 final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftUpStickID);
 final JoystickButton rightStickBottom = new JoystickButton(rightTankJoystick, 2);
@@ -148,7 +148,7 @@ final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, 1);
 arcadeTrigger.whenHeld(new Climb( m_lift ) ,true);
 
 final JoystickButton arcadeTopBase = new JoystickButton(arcadeJoystick, Constants.arcadeTopBase);        
-leftTrigger.whenPressed(new ReverseClimbDirection() ,true);
+arcadeTopBase.whenPressed(new ReverseClimbDirection(m_lift) ,true);
 
 }else{
 //ArcadeDrive
@@ -161,7 +161,7 @@ arcadeLeftUpStick.whenHeld(new IntakeOut(m_intake) ,true);
 final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftDownStickID);
 arcadeLeftDownStick.whenHeld(new IntakeIn(m_intake) ,true);
 
-final JoystickButton arcadeBottomLeft = new JoystickButton(arcadeJoystick, Constants.arcadeBottomLeftID);
+final JoystickButton arcadeBottomLeft = new JoystickButton(arcadeJoystick, Constants.arcadeBottomRightID);
 arcadeBottomLeft.whenPressed(new ChangeDirection(), true); 
 
 
