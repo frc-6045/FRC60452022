@@ -28,7 +28,7 @@ public static int intakeRaiseID = 0;
 public static int conveyorID = 14;
 public static int dumpID = 13;
 public static int liftID = 5;
-public static final int arcadeTopBase = 0;
+public static final int arcadeTopBase = 7;
 //Drive Constants
 public static int DrivePrefrance = 0;
 public static double DriveSpeed = .6;
@@ -48,7 +48,7 @@ public static double intakeFallSpeed = .1;
 public static double dumpSpeed = .35;
 //Climb Constants
 public static final double liftMotorSpeed = 0.6;
-public static double climbDirection = 1;
+public static double climbDirection = -1;
 
 //PID Constants
 public static final double DrivePIDkd = 0;
