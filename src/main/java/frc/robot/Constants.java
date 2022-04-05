@@ -47,8 +47,8 @@ public static double intakeFallSpeed = .1;
 //Dump Constants
 public static double dumpSpeed = .35;
 //Climb Constants
-public static final double liftMotorSpeed = 0.6;
-public static double climbDirection = -1;
+public static final double liftMotorSpeed = 0.8;
+public static double climbDirection = 1;
 
 //PID Constants
 public static final double DrivePIDkd = 0;

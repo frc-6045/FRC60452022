@@ -29,6 +29,7 @@ public class AutoDriveDistance extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+   // m_driveTrain.resetEncoder();
     
     
     
@@ -38,8 +39,8 @@ public class AutoDriveDistance extends CommandBase {
   @Override
   public void execute() {
     
-      m_driveTrain.my_TankDrive(m_speed, -m_speed);
-      System.out.println(m_driveTrain.get_Right_Encoder_inch());
+      m_driveTrain.my_TankDrive(m_speed, m_speed);
+       System.out.println(m_driveTrain.get_Right_Encoder_inch());
 
   }
 
@@ -55,5 +56,6 @@ public class AutoDriveDistance extends CommandBase {
     // return false;
 
     return Math.abs(m_driveTrain.get_Right_Encoder_inch()) >= m_setpoint;
+
   }
 }

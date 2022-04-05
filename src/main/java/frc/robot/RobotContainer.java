@@ -92,7 +92,7 @@ public static WPI_TalonFX frontLeftDriveMotor2 = new WPI_TalonFX(Constants.front
 
     // Configure autonomous sendable chooser
     // how to add an additional option for autonomous 
-    m_chooser.addOption("AutoDriveDistance", new AutoDriveDistance(m_driveTrain, 0.5, 24));
+    // m_chooser.addOption("AutoDriveDistance", new AutoDriveDistance(m_driveTrain, 0.5, 24));
     m_chooser.setDefaultOption("Autonomous Command", new AutonomousCommand(m_driveTrain, m_intake, m_flyWheel));
 
     SmartDashboard.putData("Auto Mode", m_chooser);
@@ -148,7 +148,8 @@ final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, 1);
 arcadeTrigger.whenHeld(new Climb( m_lift ) ,true);
 
 final JoystickButton arcadeTopBase = new JoystickButton(arcadeJoystick, Constants.arcadeTopBase);        
-arcadeTopBase.whenPressed(new ReverseClimbDirection(m_lift) ,true);
+arcadeTopBase.whenHeld(new ReverseClimbDirection(m_lift) ,true);
+
 
 }else{
 //ArcadeDrive
