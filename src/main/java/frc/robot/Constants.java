@@ -30,7 +30,7 @@ public static int dumpID = 13;
 public static int liftID = 5;
 public static final int arcadeTopBase = 7;
 //Drive Constants
-public static int DrivePrefrance = 0;
+public static int DrivePrefrance = 1;
 public static double DriveSpeed = .6;
 public static int driveDirection = 1;
 // Autonomous Constants
@@ -82,7 +82,7 @@ public static int rightOutsideSmallBaseID = 16;
 public static int arcadeTriggerID = 1;
 public static int arcadeLeftUpStickID = 5;
 public static int arcadeLeftDownStickID = 3;
-public static int arcadeBottomMiddleID = 10;
+public static int arcadeMiddleRightID = 10;
 public static int arcadeBottomRightID = 12;
 
 }

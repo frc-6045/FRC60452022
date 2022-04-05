@@ -119,10 +119,10 @@ rightTrigger.whenHeld(new Dump( m_flyWheel, m_intake, rightTankJoystick ) ,true)
 final JoystickButton leftTrigger = new JoystickButton(leftTankJoystick, Constants.leftTriggerID);        
 leftTrigger.whenHeld(new IntakeIn( m_intake) ,true);
 
-final JoystickButton leftStickTopRight = new JoystickButton(leftTankJoystick, Constants.leftStickTopRightID);
-final JoystickButton rightStickTopLeft = new JoystickButton(rightTankJoystick, Constants.rightStickTopLeftID);
-leftStickTopRight.whenHeld(new IntakeOut(m_intake), true);
-rightStickTopLeft.whenHeld(new IntakeOut(m_intake), true);
+final JoystickButton rightStickBottom = new JoystickButton(rightTankJoystick, 2);
+final JoystickButton leftStickBottom = new JoystickButton(leftTankJoystick, 2);
+rightStickBottom.whenHeld(new IntakeOut(m_intake), true);
+leftStickBottom.whenHeld(new IntakeOut(m_intake), true);
 
 /*final JoystickButton rightOutsideBigBase = new JoystickButton(rightTankJoystick, Constants.rightOutsideBigBaseID);
 final JoystickButton rightOutsideSmallBase = new JoystickButton(rightTankJoystick, Constants.rightOutsideSmallBaseID);
@@ -135,14 +135,14 @@ rightOutsideBigBase.whenPressed(new DriveTrainInvert(m_driveTrain, true));
 rightOutsideSmallBase.whenPressed(new DriveTrainInvert(m_driveTrain, false));
    
 final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftUpStickID);
-final JoystickButton rightStickBottom = new JoystickButton(rightTankJoystick, 2);
+//final JoystickButton rightStickBottom = new JoystickButton(rightTankJoystick, 2);
 arcadeLeftUpStick.whenHeld(new IntakeRise(m_intake) ,true);
-rightStickBottom.whenHeld(new IntakeFall(m_intake), true);
+//rightStickBottom.whenHeld(new IntakeFall(m_intake), true);
 
 final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftDownStickID);
-final JoystickButton leftStickBottom = new JoystickButton(leftTankJoystick, 2);
+//final JoystickButton leftStickBottom = new JoystickButton(leftTankJoystick, 2);
 arcadeLeftDownStick.whenHeld(new IntakeFall(m_intake) ,true);
-leftStickBottom.whenHeld(new IntakeFall(m_intake), true);
+//leftStickBottom.whenHeld(new IntakeFall(m_intake), true);
   
 final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, 1);        
 arcadeTrigger.whenHeld(new Climb( m_lift ) ,true);
@@ -154,7 +154,7 @@ arcadeTopBase.whenHeld(new ReverseClimbDirection(m_lift) ,true);
 }else{
 //ArcadeDrive
 final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, Constants.arcadeTriggerID);        
-arcadeTrigger.whenPressed(new Dump( m_flyWheel, m_intake, rightTankJoystick ) ,true);
+arcadeTrigger.whenHeld(new Dump( m_flyWheel, m_intake, rightTankJoystick ) ,true);
   
 final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftUpStickID);
 arcadeLeftUpStick.whenHeld(new IntakeOut(m_intake) ,true);
@@ -162,12 +162,14 @@ arcadeLeftUpStick.whenHeld(new IntakeOut(m_intake) ,true);
 final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftDownStickID);
 arcadeLeftDownStick.whenHeld(new IntakeIn(m_intake) ,true);
 
-final JoystickButton arcadeBottomLeft = new JoystickButton(arcadeJoystick, Constants.arcadeBottomRightID);
-arcadeBottomLeft.whenPressed(new ChangeDirection(), true); 
+final JoystickButton arcadeBottomRight = new JoystickButton(arcadeJoystick, Constants.arcadeBottomRightID);
+final JoystickButton arcadeMiddleRight = new JoystickButton(arcadeJoystick, Constants.arcadeMiddleRightID);
+arcadeBottomRight.whenPressed(new DriveTrainInvert(m_driveTrain, true));
+arcadeMiddleRight.whenPressed(new DriveTrainInvert(m_driveTrain, false));
 
 
 final JoystickButton rightOutsideBigBase = new JoystickButton(rightTankJoystick, Constants.rightOutsideBigBaseID);        
-rightOutsideBigBase.whenPressed(new Climb( m_lift ) ,true);
+rightOutsideBigBase.whenHeld(new Climb( m_lift ) ,true);
 
 final JoystickButton rightTrigger = new JoystickButton(rightTankJoystick, Constants.rightTriggerID);        
 rightTrigger.whenHeld(new IntakeRise( m_intake ) ,true);

@@ -42,7 +42,7 @@ public class ArcadeDrive extends CommandBase {
     @Override
     public void execute() {   
         driveScale = (1+ singleJoy.getRawAxis(3)) * .5;    
-        m_driveTrain.getDifferentialDrive().arcadeDrive(singleJoy.getX() * Constants.DriveSpeed * driveScale, singleJoy.getY() * -Constants.DriveSpeed * driveScale);
+        m_driveTrain.getDifferentialDrive().arcadeDrive(singleJoy.getY() * Constants.DriveSpeed * driveScale, singleJoy.getX() * Constants.DriveSpeed * driveScale);
       /*  double turningValue = (Constants.kAngleSetPoint -RobotContainer.gyro.getAngle()) * Constants.kP;
         turningValue = Math.copySign(turningValue, singleJoy.getY());
        m_driveTrain.getDifferentialDrive().arcadeDrive(singleJoy.getX() * .6, turningValue);
