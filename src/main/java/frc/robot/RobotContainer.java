@@ -59,7 +59,7 @@ private final TankDrive m_TankDrive = new TankDrive(m_driveTrain, leftTankJoysti
 public ArcadeDrive getArcadeDrive(){ return m_ArcadeDrive;}
 public TankDrive getTankDrive(){ return m_TankDrive;}
 // Gyro
-public static ADIS16470_IMU gyro = new ADIS16470_IMU();
+
 public static WPI_TalonFX frontLeftDriveMotor2 = new WPI_TalonFX(Constants.frontLeftDriveID);
 
 
@@ -91,6 +91,8 @@ public static WPI_TalonFX frontLeftDriveMotor2 = new WPI_TalonFX(Constants.front
         
 
     // Configure autonomous sendable chooser
+    // how to add an additional option for autonomous 
+    // m_chooser.addOption("AutoDriveDistance", new AutoDriveDistance(m_driveTrain, 0.5, 24));
     m_chooser.setDefaultOption("Autonomous Command", new AutonomousCommand(m_driveTrain, m_intake, m_flyWheel));
 
     SmartDashboard.putData("Auto Mode", m_chooser);
@@ -117,25 +119,30 @@ rightTrigger.whenHeld(new Dump( m_flyWheel, m_intake, rightTankJoystick ) ,true)
 final JoystickButton leftTrigger = new JoystickButton(leftTankJoystick, Constants.leftTriggerID);        
 leftTrigger.whenHeld(new IntakeIn( m_intake) ,true);
 
-final JoystickButton leftStickTopRight = new JoystickButton(leftTankJoystick, Constants.leftStickTopRightID);
-final JoystickButton rightStickTopLeft = new JoystickButton(rightTankJoystick, Constants.rightStickTopLeftID);
-leftStickTopRight.whenHeld(new IntakeOut(m_intake), true);
-rightStickTopLeft.whenHeld(new IntakeOut(m_intake), true);
+final JoystickButton rightStickBottom = new JoystickButton(rightTankJoystick, 2);
+final JoystickButton leftStickBottom = new JoystickButton(leftTankJoystick, 2);
+rightStickBottom.whenHeld(new IntakeOut(m_intake), true);
+leftStickBottom.whenHeld(new IntakeOut(m_intake), true);
+
+/*final JoystickButton rightOutsideBigBase = new JoystickButton(rightTankJoystick, Constants.rightOutsideBigBaseID);
+final JoystickButton rightOutsideSmallBase = new JoystickButton(rightTankJoystick, Constants.rightOutsideSmallBaseID);
+rightOutsideBigBase.whenPressed(new ChangeDirection(), true);
+rightOutsideSmallBase.whenPressed(new ChangeDirection(), true); */
 
 final JoystickButton rightOutsideBigBase = new JoystickButton(rightTankJoystick, Constants.rightOutsideBigBaseID);
 final JoystickButton rightOutsideSmallBase = new JoystickButton(rightTankJoystick, Constants.rightOutsideSmallBaseID);
-rightOutsideBigBase.whenPressed(new ChangeDirection(), true);
-rightOutsideSmallBase.whenPressed(new ChangeDirection(), true);
+rightOutsideBigBase.whenPressed(new DriveTrainInvert(m_driveTrain, true));
+rightOutsideSmallBase.whenPressed(new DriveTrainInvert(m_driveTrain, false));
    
 final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftUpStickID);
-final JoystickButton rightStickBottom = new JoystickButton(rightTankJoystick, 2);
+//final JoystickButton rightStickBottom = new JoystickButton(rightTankJoystick, 2);
 arcadeLeftUpStick.whenHeld(new IntakeRise(m_intake) ,true);
-rightStickBottom.whenHeld(new IntakeFall(m_intake), true);
+//rightStickBottom.whenHeld(new IntakeFall(m_intake), true);
 
 final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftDownStickID);
-final JoystickButton leftStickBottom = new JoystickButton(leftTankJoystick, 2);
+//final JoystickButton leftStickBottom = new JoystickButton(leftTankJoystick, 2);
 arcadeLeftDownStick.whenHeld(new IntakeFall(m_intake) ,true);
-leftStickBottom.whenHeld(new IntakeFall(m_intake), true);
+//leftStickBottom.whenHeld(new IntakeFall(m_intake), true);
   
 final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, 1);        
 arcadeTrigger.whenHeld(new Climb( m_lift ) ,true);
@@ -146,7 +153,7 @@ arcadeTopBase.whenHeld(new ReverseClimbDirection(m_lift) ,true);
 }else{
 //ArcadeDrive
 final JoystickButton arcadeTrigger = new JoystickButton(arcadeJoystick, Constants.arcadeTriggerID);        
-arcadeTrigger.whenPressed(new Dump( m_flyWheel, m_intake, rightTankJoystick ) ,true);
+arcadeTrigger.whenHeld(new Dump( m_flyWheel, m_intake, rightTankJoystick ) ,true);
   
 final JoystickButton arcadeLeftUpStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftUpStickID);
 arcadeLeftUpStick.whenHeld(new IntakeOut(m_intake) ,true);
@@ -154,14 +161,14 @@ arcadeLeftUpStick.whenHeld(new IntakeOut(m_intake) ,true);
 final JoystickButton arcadeLeftDownStick = new JoystickButton(arcadeJoystick, Constants.arcadeLeftDownStickID);
 arcadeLeftDownStick.whenHeld(new IntakeIn(m_intake) ,true);
 
-final JoystickButton arcadeBottomLeft = new JoystickButton(arcadeJoystick, Constants.arcadeBottomLeftID);
-arcadeBottomLeft.whenPressed(new ChangeDirection(), true); 
-
 final JoystickButton arcadeBottomRight = new JoystickButton(arcadeJoystick, Constants.arcadeBottomRightID);
-arcadeBottomRight.whenPressed(new ChangeDirection(), true);
+final JoystickButton arcadeMiddleRight = new JoystickButton(arcadeJoystick, Constants.arcadeMiddleRightID);
+arcadeBottomRight.whenPressed(new DriveTrainInvert(m_driveTrain, true));
+arcadeMiddleRight.whenPressed(new DriveTrainInvert(m_driveTrain, false));
+
 
 final JoystickButton rightOutsideBigBase = new JoystickButton(rightTankJoystick, Constants.rightOutsideBigBaseID);        
-rightOutsideBigBase.whenPressed(new Climb( m_lift ) ,true);
+rightOutsideBigBase.whenHeld(new Climb( m_lift ) ,true);
 
 final JoystickButton rightTrigger = new JoystickButton(rightTankJoystick, Constants.rightTriggerID);        
 rightTrigger.whenHeld(new IntakeRise( m_intake ) ,true);

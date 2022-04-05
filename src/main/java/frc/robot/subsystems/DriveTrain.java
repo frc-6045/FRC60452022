@@ -19,6 +19,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -40,13 +41,15 @@ private WPI_TalonFX backRightDriveMotor;
 private MotorControllerGroup leftDriveMotorGroup;
 private MotorControllerGroup rightDriveMotorGroup;
 private DifferentialDrive differentialDrive;
-
+private ADIS16470_IMU gyro;
+private boolean invertDrive;
 
     /**
     *
     */
     public DriveTrain() {
-        
+        invertDrive = false;
+        gyro = new ADIS16470_IMU();
         frontLeftDriveMotor = new WPI_TalonFX(Constants.frontLeftDriveID);
         
     /* Factory default hardware to prevent unexpected behavior */
@@ -91,7 +94,7 @@ frontRightDriveMotor = new WPI_TalonFX(Constants.frontRightDriveID);
 frontRightDriveMotor.configFactoryDefault();
 
         /* Invert Motor? and set Break Mode */
-frontRightDriveMotor.setInverted(false);
+frontRightDriveMotor.setInverted(true);
 frontRightDriveMotor.setNeutralMode(NeutralMode.Coast);
 
         /* Set the peak and nominal outputs */
@@ -108,7 +111,7 @@ backRightDriveMotor = new WPI_TalonFX(Constants.backRightDriveID);
 backRightDriveMotor.configFactoryDefault();
 
         /* Invert Motor? and set Break Mode */
-backRightDriveMotor.setInverted(false);
+backRightDriveMotor.setInverted(true);
 backRightDriveMotor.setNeutralMode(NeutralMode.Coast);
 
         /* Set the peak and nominal outputs */
@@ -152,15 +155,42 @@ differentialDrive.setMaxOutput(1.0);
     // here. Call these from Commands.
     public DifferentialDrive getDifferentialDrive() {return differentialDrive;}
    
+
+    public void my_TankDrive(double leftSpeed, double rightSpeed) {
+        if (invertDrive) {
+            differentialDrive.tankDrive(-leftSpeed, -rightSpeed);
+        } else {
+            differentialDrive.tankDrive(rightSpeed, leftSpeed);
+        }
+        
+    }
+    public void my_InvertDrive(boolean invert) {
+        if (invert) {
+            invertDrive = true;
+        } else {
+            invertDrive = false;
+        }
+    }
+
+public void my_ArcadeDrive(double speed, double rotation) {
+    if (invertDrive) {
+        differentialDrive.arcadeDrive(-speed, -rotation);
+    } else {
+        differentialDrive.arcadeDrive(speed, rotation);
+    }
+}
+
+
     public double get_Right_EncoderCounts(){
         return frontLeftDriveMotor.getSelectedSensorPosition();
     }
 
-    public double get_Right_Encoder_inch(double sensorCounts){
-        double motorRotations = (double)sensorCounts / Constants.kCountsPerRev;
+    public double get_Right_Encoder_inch(){
+
+        double motorRotations = get_Right_EncoderCounts() / Constants.kCountsPerRev;
         double wheelRotations = motorRotations / Constants.kGearRatio;
         double positionInches = wheelRotations * (2 * Math.PI * Constants.kWheelRadiusInches);
-        return positionInches;
+        return positionInches / 0.6839;
         
         
     }
@@ -169,5 +199,15 @@ differentialDrive.setMaxOutput(1.0);
         frontLeftDriveMotor.setSelectedSensorPosition(0);
     }
     
+    public double getHeading() {
+        return gyro.getAngle();
+
+    }
+
+    public void resetGyro() { 
+        gyro.reset();
+    }
+
+
 }
 

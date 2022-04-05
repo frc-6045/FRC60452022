@@ -54,8 +54,15 @@ public class TankDrive extends CommandBase {
         //m_driveTrain.getDifferentialDrive().tankDrive(leftJoystick.getY() * -Constants.DriveSpeed * driveScale, rightJoystick.getY() * Constants.DriveSpeed * driveScale);
      //double turningValue = (Constants.kAngleSetPoint -RobotContainer.gyro.getAngle()) * Constants.kP;
        // turningValue = Math.copySign(turningValue, leftJoystick.getY(), rightJoystick.getY());
+<<<<<<< HEAD
        m_driveTrain.getDifferentialDrive().tankDrive(leftJoystick.getY() * -Constants.DriveSpeed * Constants.driveDirection , rightJoystick.getY() * Constants.DriveSpeed * Constants.driveDirection);
     //System.out.println(RobotContainer.frontLeftDriveMotor2.getSelectedSensorPosition());
+=======
+        m_driveTrain.my_TankDrive(leftJoystick.getY() * Constants.DriveSpeed, rightJoystick.getY() * Constants.DriveSpeed);
+        System.out.println(driveScale);
+   
+       System.out.println(m_driveTrain.get_Right_Encoder_inch());
+>>>>>>> origin/Isaac
     }
 
   
@@ -63,7 +70,7 @@ public class TankDrive extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-    m_driveTrain.getDifferentialDrive().tankDrive(0, 0);
+    m_driveTrain.my_TankDrive(0, 0);
 
 }
 
