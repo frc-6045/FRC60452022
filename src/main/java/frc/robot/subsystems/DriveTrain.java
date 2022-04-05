@@ -172,6 +172,14 @@ differentialDrive.setMaxOutput(1.0);
         }
     }
 
+public void my_ArcadeDrive(double speed, double rotation) {
+    if (invertDrive) {
+        differentialDrive.arcadeDrive(-speed, -rotation);
+    } else {
+        differentialDrive.arcadeDrive(speed, rotation);
+    }
+}
+
 
     public double get_Right_EncoderCounts(){
         return frontLeftDriveMotor.getSelectedSensorPosition();
