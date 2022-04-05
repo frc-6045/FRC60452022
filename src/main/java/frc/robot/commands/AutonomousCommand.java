@@ -12,6 +12,7 @@
 
 package frc.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
@@ -26,13 +27,14 @@ public class AutonomousCommand extends SequentialCommandGroup {
         addCommands( 
         //Ball 1
                 new AutoActuate(intake, Constants.intakeFallSpeed).withTimeout(2),   
-                new AutoIntake(intake, Constants.intakeSpinSpeed, Constants.conveyorSpeed).withTimeout(1),
-        //Ball 2
-                new AutoDriveDistance(drive),
+                new ParallelCommandGroup(new AutoIntake(intake, Constants.intakeSpinSpeed, Constants.conveyorSpeed).withTimeout(2),
+                new AutoDriveDistance(drive)),
+                
+        //Ball 2       
                 new AutoIntake(intake, Constants.intakeSpinSpeed, Constants.conveyorSpeed).withTimeout(1), 
         //Score
                 new AutoDriveDistance(drive),
-                new AutoScore(fly, Constants.dumpSpeed).withTimeout(3));
+                new AutoScore(fly, intake, Constants.dumpSpeed, Constants.conveyorSpeed).withTimeout(3));
     
     }
 /*

@@ -55,7 +55,7 @@ public class TankDrive extends CommandBase {
      //double turningValue = (Constants.kAngleSetPoint -RobotContainer.gyro.getAngle()) * Constants.kP;
        // turningValue = Math.copySign(turningValue, leftJoystick.getY(), rightJoystick.getY());
        m_driveTrain.getDifferentialDrive().tankDrive(leftJoystick.getY() * -Constants.DriveSpeed * Constants.driveDirection , rightJoystick.getY() * Constants.DriveSpeed * Constants.driveDirection);
-    System.out.println(RobotContainer.frontLeftDriveMotor2.getSelectedSensorPosition());
+    //System.out.println(RobotContainer.frontLeftDriveMotor2.getSelectedSensorPosition());
     }
 
   
