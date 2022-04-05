@@ -28,7 +28,6 @@ public static int intakeRaiseID = 0;
 public static int conveyorID = 14;
 public static int dumpID = 13;
 public static int liftID = 5;
-public static final int arcadeTopBase = 7;
 //Drive Constants
 public static int DrivePrefrance = 1;
 public static double DriveSpeed = .6;
@@ -63,7 +62,6 @@ public static final double kWheelRadiusInches = 3;
 public static final double kGearRatio = 5.95/1;
 public static final double kCountsPerRev = 4096;
 public static final double autoDriveDistanceInches = 200000;
-
 
 
 
