@@ -56,7 +56,7 @@ public class ReverseClimbDirection extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        m_lift.getLiftMotor().set(-1* Constants.liftMotorSpeed * Constants.climbDirection * -1);
+        m_lift.getLiftMotor().set( Constants.liftMotorSpeed * Constants.climbDirection );
         //SEE IF THE MOTOR DIRECTION NEEDS TO BE POSTIVE OR NEGATIVE
 
     }
