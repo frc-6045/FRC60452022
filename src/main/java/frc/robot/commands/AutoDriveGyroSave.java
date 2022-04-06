@@ -22,7 +22,7 @@ private final PIDController m_PIDHeading;
     // Use addRequirements() here to declare subsystem dependencies.
     m_PIDHeading = new PIDController(0 , 0, 0);
     m_PIDHeading.setTolerance(5);
-    // m_PIDHeading.enableContinuousInput(-180, 180);
+    m_PIDHeading.enableContinuousInput(-180, 180);
     m_driveTrain = subsystem;
     addRequirements(m_driveTrain);
     m_speed = speed;
@@ -64,10 +64,8 @@ private final PIDController m_PIDHeading;
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (m_PIDHeading.atSetpoint()) {
-      return true;
-    } else {
-      return false;
-    }
+    return (m_PIDHeading.atSetpoint());
+      
+    
   }
 }
