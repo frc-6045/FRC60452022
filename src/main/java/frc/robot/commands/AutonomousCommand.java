@@ -28,6 +28,7 @@ public class AutonomousCommand extends SequentialCommandGroup {
     public AutonomousCommand(DriveTrain drive, Intake intake, FlyWheel fly) {
         addCommands( 
         //Ball 1
+            new AutoDriveGyro(drive, -.7, 10, 0),
             new ParallelCommandGroup(new AutoDriveGyro(drive, .5, 30, 0)), new AutoActuate(intake, Constants.intakeFallSpeed).withTimeout(2),
             /*new AutoActuate(intake, Constants.intakeFallSpeed).withTimeout(2), 
             new AutoDriveGyro(drive, .5, 30, 0)); */
