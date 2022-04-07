@@ -28,15 +28,16 @@ public class AutonomousCommand extends SequentialCommandGroup {
     public AutonomousCommand(DriveTrain drive, Intake intake, FlyWheel fly) {
         addCommands( 
         //Ball 1
-            new AutoDriveGyro(drive, -.7, 10, 0),
-            new ParallelCommandGroup(new AutoDriveGyro(drive, .5, 30, 0)), new AutoActuate(intake, Constants.intakeFallSpeed).withTimeout(2),
-            /*new AutoActuate(intake, Constants.intakeFallSpeed).withTimeout(2), 
-            new AutoDriveGyro(drive, .5, 30, 0)); */
-        //Ball 2
-            new AutoIntake(intake, Constants.intakeSpinSpeed, Constants.conveyorSpeed).withTimeout(3),       
-        //Score
-            new AutoDriveGyro(drive, -.5, 30, 0),
-            new AutoScore(fly, intake, Constants.dumpSpeed, Constants.conveyorSpeed).withTimeout(3));
+               new AutoDriveGyro(drive, 0.3, 100, 0));
+        //     new AutoDriveGyro(drive, -.7, 10, 0),
+        //     new ParallelCommandGroup(new AutoDriveGyro(drive, .5, 30, 0)), new AutoActuate(intake, Constants.intakeFallSpeed).withTimeout(2),
+        //     /*new AutoActuate(intake, Constants.intakeFallSpeed).withTimeout(2), 
+        //     new AutoDriveGyro(drive, .5, 30, 0)); */
+        // //Ball 2
+        //     new AutoIntake(intake, Constants.intakeSpinSpeed, Constants.conveyorSpeed).withTimeout(3),       
+        // //Score
+        //     new AutoDriveGyro(drive, -.5, 30, 0),
+        //     new AutoScore(fly, intake, Constants.dumpSpeed, Constants.conveyorSpeed).withTimeout(3));
     
     }
 /*

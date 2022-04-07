@@ -21,8 +21,8 @@ private double m_DistanceSetPoint;
   
   public AutoDriveGyro(DriveTrain subsystem, double speed, double distanceSetPoint, double heading) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_PIDHeading = new PIDController(0.1 , 0, 0);
-    m_PIDHeading.setTolerance(3);
+    m_PIDHeading = new PIDController(0.05 , 0, 0);
+    m_PIDHeading.setTolerance(1);
     m_PIDHeading.enableContinuousInput(-180, 180);
     m_driveTrain = subsystem;
     addRequirements(m_driveTrain);
@@ -48,16 +48,19 @@ private double m_DistanceSetPoint;
 
   double turningValue = m_driveTrain.getHeading();
   double PIDOut = m_PIDHeading.calculate(turningValue);
-  double maximumMotorOutput = -0.3;
-  double minimumMotorOutput = 0.3;
+  double maximumMotorOutput = 0.3;
+  double minimumMotorOutput = -0.3;
   double motorOutput;
-  if (PIDOut >= maximumMotorOutput) {
+  if (PIDOut <= maximumMotorOutput && PIDOut <= minimumMotorOutput) {
+  motorOutput = PIDOut;
+  } else if ( PIDOut >= maximumMotorOutput) {
+  motorOutput = minimumMotorOutput;
+  } else if ( PIDOut <= minimumMotorOutput) {
   motorOutput = maximumMotorOutput;
-  } else if (PIDOut <= minimumMotorOutput){
-      motorOutput = minimumMotorOutput;
   } else {
-    motorOutput = PIDOut;
+    motorOutput = 0.1;
   }
+
 
   // turningValue = Math.copySign(turningValue, speed);
   m_driveTrain.getDifferentialDrive().arcadeDrive(m_speed, motorOutput); 

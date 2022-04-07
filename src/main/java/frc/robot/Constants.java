@@ -29,9 +29,10 @@ public static int conveyorID = 14;
 public static int dumpID = 13;
 public static int liftID = 5;
 //Drive Constants
-public static int DrivePrefrance = 0;
+public static int DrivePrefrance = 1;
 public static double DriveSpeed = .6;
 public static int driveDirection = 1;
+public static final double ArcadeDriveSpeed = 0.8;
 // Autonomous Constants
 public static double autoDriveSpeed = .45;
 public static double autoDriveTime = 10;
@@ -77,6 +78,7 @@ public static int rightStickTopLeftID = 3;
 public static int rightOutsideBigBaseID = 14;
 public static int rightOutsideSmallBaseID = 16;
 public static final int arcadeTopBase = 7;
+
     //Arcade Joystick
 public static int arcadeTriggerID = 1;
 public static int arcadeLeftUpStickID = 5;
